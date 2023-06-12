@@ -4,6 +4,8 @@
  */
 package app;
 
+import java.awt.Frame;
+
 /**
  *
  * @author avrians
@@ -15,6 +17,9 @@ public class Index extends javax.swing.JFrame {
      */
     public Index() {
         initComponents();
+
+        setExtendedState(Frame.MAXIMIZED_BOTH);
+
     }
 
     /**
@@ -32,11 +37,11 @@ public class Index extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 772, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 506, Short.MAX_VALUE)
         );
 
         pack();
