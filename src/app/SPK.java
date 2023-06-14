@@ -256,7 +256,7 @@ public class SPK extends javax.swing.JFrame {
     private void loadKriteria() {
         try {
             Object[][] data = null;
-            Object[] header = {"ID", "KRITERIA", "BOBOT", "LABEL"};
+            Object[] header = {"ID", "KRITERIA", "BOBOT", "ATRIBUT"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             tblKriteria.setModel(model);
 
@@ -266,10 +266,10 @@ public class SPK extends javax.swing.JFrame {
             String query = "SELECT * FROM kriteria";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                int id = rs.getInt("id_kriteria");
+                int id = rs.getInt("id");
                 String nama = rs.getString("nama");
                 String bobot = rs.getString("bobot");
-                String label = rs.getString("label");
+                String label = rs.getString("atribut");
                 Object[] d = {id, nama, bobot, label};
                 model.addRow(d);
             }
@@ -281,7 +281,7 @@ public class SPK extends javax.swing.JFrame {
     private void loadAlternatif() {
         try {
             Object[][] data = null;
-            Object[] header = {"ID", "NAMA", "DESKRIPSI", "HARGA", "KUALITAS", "FITUR", "POPULER", "PURNA JUAL", "KEAWETAN"};
+            Object[] header = {"ID", "NAMA", "DESKRIPSI", "NILAI INDONESIA", "NILAI INGGRIS", "NILAI MTK", "NILAI IPA", "JARAK"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             TBLaLTERNATIF.setModel(model);
 
