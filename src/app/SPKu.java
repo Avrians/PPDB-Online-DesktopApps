@@ -18,14 +18,14 @@ import java.util.Collections;
 
 /**
  *
- * @author avrians
+ * @author nishom
  */
-public class SPK extends javax.swing.JFrame {
+public class SPKu extends javax.swing.JFrame {
 
     /**
      * Creates new form SPK
      */
-    public SPK() {
+    public SPKu() {
         initComponents();
 
         setLocationRelativeTo(null);
@@ -216,21 +216,23 @@ public class SPK extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SPK.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPKu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SPK.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPKu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SPK.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPKu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SPK.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SPKu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SPK().setVisible(true);
+                new SPKu().setVisible(true);
             }
         });
     }
@@ -256,7 +258,7 @@ public class SPK extends javax.swing.JFrame {
     private void loadKriteria() {
         try {
             Object[][] data = null;
-            Object[] header = {"ID", "KRITERIA", "BOBOT", "ATRIBUT"};
+            Object[] header = {"ID", "KRITERIA", "BOBOT", "LABEL"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             tblKriteria.setModel(model);
 
@@ -266,11 +268,11 @@ public class SPK extends javax.swing.JFrame {
             String query = "SELECT * FROM kriteria";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                int id = rs.getInt("id");
+                int id = rs.getInt("id_kriteria");
                 String nama = rs.getString("nama");
                 String bobot = rs.getString("bobot");
-                String atribut = rs.getString("atribut");
-                Object[] d = {id, nama, bobot, atribut};
+                String label = rs.getString("label");
+                Object[] d = {id, nama, bobot, label};
                 model.addRow(d);
             }
         } catch (Exception e) {
@@ -281,26 +283,27 @@ public class SPK extends javax.swing.JFrame {
     private void loadAlternatif() {
         try {
             Object[][] data = null;
-            Object[] header = {"ID", "NAMA", "NISN", "NILAI INDONESIA", "NILAI INGGRIS", "NILAI MTK", "NILAI IPA", "JARAK"};
+            Object[] header = {"ID", "NAMA", "DESKRIPSI", "HARGA", "KUALITAS", "FITUR", "POPULER", "PURNA JUAL", "KEAWETAN"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             TBLaLTERNATIF.setModel(model);
 
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
             Statement st = koneksi.createStatement();
-            String query = "SELECT * FROM calon_siswa";
+            String query = "SELECT * FROM alternatif";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nama = rs.getString("nama");
-                String nisn = rs.getString("nisn");
-                String nilai_indo = rs.getString("nilai_indo");
-                String nilai_mtk = rs.getString("nilai_mtk");
-                String nilai_ing = rs.getString("nilai_ing");
-                String nilai_ipa = rs.getString("nilai_ipa");
-                String jarak = rs.getString("jarak");
+                String des = rs.getString("deskripsi");
+                String harga = rs.getString("harga");
+                String kualitas = rs.getString("kualitas");
+                String fitur = rs.getString("fitur");
+                String populer = rs.getString("populer");
+                String purnaJual = rs.getString("purna_jual");
+                String keawetan = rs.getString("keawetan");
 
-                Object[] d = {id, nama, nisn, nilai_indo, nilai_mtk, nilai_ing, nilai_ipa, jarak};
+                Object[] d = {id, nama, des, harga, kualitas, fitur, populer, purnaJual, keawetan};
                 model.addRow(d);
             }
         } catch (Exception e) {
@@ -319,29 +322,38 @@ public class SPK extends javax.swing.JFrame {
             
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
-            String query = "SELECT * FROM calon_siswa";
+            String query = "SELECT * FROM alternatif";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                double nilai_indo = rs.getDouble("nilai_indo");
+                double harga = rs.getDouble("harga");
                 double kualitas = rs.getDouble("kualitas");
                 double fitur = rs.getDouble("fitur");
                 double populer = rs.getDouble("populer");
                 double purna_jual = rs.getDouble("purna_jual");
+                double keawetan = rs.getDouble("keawetan");
 
-                double pembagi_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") : max("nilai_indo");
+                double pembagi_harga = label("harga").equals("cost") ? min("harga") : max("harga");
                 double pembagi_kualitas = label("kualitas").equals("cost") ? min("kualitas") : max("kualitas");
                 double pembagi_fitur = label("fitur").equals("cost") ? min("fitur") : max("fitur");
                 double pembagi_populer = label("populer").equals("cost") ? min("populer") : max("populer");
                 double pembagi_pjual = label("purna_jual").equals("cost") ? min("purna_jual") : max("purna_jual");
+                double pembagi_keawetan = label("keawetan").equals("cost") ? min("keawetan") : max("keawetan");
 
-                double norm_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") / nilai_indo : nilai_indo / max("nilai_indo");
+                double norm_harga = label("harga").equals("cost") ? min("harga") / harga : harga / max("harga");
                 double norm_kualitas = label("kualitas").equals("cost") ? min("kualitas") / kualitas : kualitas / max("kualitas");
                 double norm_fitur = label("fitur").equals("cost") ? min("fitur") / fitur : fitur / max("fitur");
                 double norm_populer = label("populer").equals("cost") ? min("populer") / populer : populer / max("populer");
                 double norm_purna_jual = label("purna_jual").equals("cost") ? min("purna_jual") / purna_jual : purna_jual / max("purna_jual");
+                double norm_keawetan = label("keawetan").equals("cost") ? min("keawetan") / keawetan : keawetan / max("keawetan");
 
+//                System.out.println(bobot("harga"));
+//                System.out.println(bobot("kualitas"));
+//                System.out.println(bobot("fitur"));
+//                System.out.println(bobot("populer"));
+//                System.out.println(bobot("purna_jual"));
+//                System.out.println(bobot("keawetan"));
                 
-                double hasil = (bobot("nilai_indo")*norm_nilai_indo)+(bobot("kualitas")*norm_kualitas)+(bobot("fitur")*norm_fitur)+(bobot("populer")*norm_populer)+(bobot("purna_jual")*norm_purna_jual);
+                double hasil = (bobot("harga")*norm_harga)+(bobot("kualitas")*norm_kualitas)+(bobot("fitur")*norm_fitur)+(bobot("populer")*norm_populer)+(bobot("purna_jual")*norm_purna_jual)+(bobot("keawetan")*norm_keawetan);
                 //hasil_saw.add(hasil);   
                 nomor++;
                 
@@ -361,7 +373,7 @@ public class SPK extends javax.swing.JFrame {
         try {
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
-            String query = "SELECT MIN(" + kolom + ") AS min_kolom FROM calon_siswa";
+            String query = "SELECT MIN(" + kolom + ") AS min_kolom FROM alternatif";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 min = rs.getDouble("min_kolom");
@@ -378,7 +390,7 @@ public class SPK extends javax.swing.JFrame {
         try {
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
-            String query = "SELECT MAX(" + kolom + ") AS max_kolom FROM calon_siswa";
+            String query = "SELECT MAX(" + kolom + ") AS max_kolom FROM alternatif";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 max = rs.getDouble("max_kolom");
@@ -398,7 +410,7 @@ public class SPK extends javax.swing.JFrame {
             String query = "SELECT label FROM kriteria WHERE nama='" + kolom + "'";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                label = rs.getString("atribut");
+                label = rs.getString("label");
             }
             return label;
 
