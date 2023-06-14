@@ -281,7 +281,7 @@ public class SPK extends javax.swing.JFrame {
     private void loadAlternatif() {
         try {
             Object[][] data = null;
-            Object[] header = {"ID", "NAMA", "DESKRIPSI", "NILAI INDONESIA", "NILAI INGGRIS", "NILAI MTK", "NILAI IPA", "JARAK"};
+            Object[] header = {"ID", "NAMA", "NISN", "NILAI INDONESIA", "NILAI INGGRIS", "NILAI MTK", "NILAI IPA", "JARAK"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             TBLaLTERNATIF.setModel(model);
 
@@ -293,15 +293,14 @@ public class SPK extends javax.swing.JFrame {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nama = rs.getString("nama");
-                String des = rs.getString("deskripsi");
-                String harga = rs.getString("harga");
-                String kualitas = rs.getString("kualitas");
-                String fitur = rs.getString("fitur");
-                String populer = rs.getString("populer");
-                String purnaJual = rs.getString("purna_jual");
-                String keawetan = rs.getString("keawetan");
+                String nisn = rs.getString("nisn");
+                String nilai_indo = rs.getString("nilai_indo");
+                String nilai_mtk = rs.getString("nilai_mtk");
+                String nilai_ing = rs.getString("nilai_ing");
+                String nilai_ipa = rs.getString("nilai_ipa");
+                String jarak = rs.getString("jarak");
 
-                Object[] d = {id, nama, des, harga, kualitas, fitur, populer, purnaJual, keawetan};
+                Object[] d = {id, nama, nisn, nilai_indo, nilai_ing, nilai_mtk, nilai_ipa, jarak};
                 model.addRow(d);
             }
         } catch (Exception e) {
