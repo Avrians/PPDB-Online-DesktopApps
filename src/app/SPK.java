@@ -269,8 +269,8 @@ public class SPK extends javax.swing.JFrame {
                 int id = rs.getInt("id");
                 String nama = rs.getString("nama");
                 String bobot = rs.getString("bobot");
-                String label = rs.getString("atribut");
-                Object[] d = {id, nama, bobot, label};
+                String atribut = rs.getString("atribut");
+                Object[] d = {id, nama, bobot, atribut};
                 model.addRow(d);
             }
         } catch (Exception e) {
@@ -288,7 +288,7 @@ public class SPK extends javax.swing.JFrame {
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
             Statement st = koneksi.createStatement();
-            String query = "SELECT * FROM alternatif";
+            String query = "SELECT * FROM calon_siswa";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -371,7 +371,7 @@ public class SPK extends javax.swing.JFrame {
         try {
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
-            String query = "SELECT MIN(" + kolom + ") AS min_kolom FROM alternatif";
+            String query = "SELECT MIN(" + kolom + ") AS min_kolom FROM calon_siswa";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 min = rs.getDouble("min_kolom");
@@ -388,7 +388,7 @@ public class SPK extends javax.swing.JFrame {
         try {
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
-            String query = "SELECT MAX(" + kolom + ") AS max_kolom FROM alternatif";
+            String query = "SELECT MAX(" + kolom + ") AS max_kolom FROM calon_siswa";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 max = rs.getDouble("max_kolom");
@@ -408,7 +408,7 @@ public class SPK extends javax.swing.JFrame {
             String query = "SELECT label FROM kriteria WHERE nama='" + kolom + "'";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                label = rs.getString("label");
+                label = rs.getString("atribut");
             }
             return label;
 
