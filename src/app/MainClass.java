@@ -91,7 +91,7 @@ public class MainClass extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblData);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("APLIKASI OLAH DATA MENU");
+        jLabel1.setText("SELEKSI PENERIMAAN PESERTA DIDIK BARU");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,7 +111,7 @@ public class MainClass extends javax.swing.JFrame {
                 .addContainerGap())
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(265, 265, 265)
+                .addGap(158, 158, 158)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
