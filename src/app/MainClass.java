@@ -137,7 +137,7 @@ public class MainClass extends javax.swing.JFrame {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-        TambahMenu TM = new TambahMenu(this, true);
+        TambahData TM = new TambahData(this, true);
         TM.setVisible(true);
     }//GEN-LAST:event_btnTambahActionPerformed
 
