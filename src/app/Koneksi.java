@@ -20,7 +20,7 @@ public class Koneksi {
             MysqlDataSource mds = new MysqlDataSource();
             mds.setUser("root");
             mds.setPassword("");
-            mds.setDatabaseName("ppdbdekstop");
+            mds.setDatabaseName("ppdbonline");
             mds.setServerName("localhost");
             mds.setPortNumber(3306);
             mds.setServerTimezone("Asia/Jakarta");
