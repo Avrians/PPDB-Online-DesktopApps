@@ -252,7 +252,7 @@ public class MainClass extends javax.swing.JFrame {
 
     private void EditData() {
         if (mnID > 0) {
-            EditMenu edit = new EditMenu(this, true);
+            EditData edit = new EditData(this, true);
             edit.mn = menu;
             edit.setVisible(true);
         }
