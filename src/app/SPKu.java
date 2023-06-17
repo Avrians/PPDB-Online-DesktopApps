@@ -47,7 +47,6 @@ public class SPKu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtCari = new javax.swing.JTextField();
         btnCari = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -61,12 +60,17 @@ public class SPKu extends javax.swing.JFrame {
         btnHapus = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TBLaLTERNATIF = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        btnNormalisasi = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        hasilPembobotan1 = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
+        btnNormalisasi1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         hasilPembobotan = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,48 +84,6 @@ public class SPKu extends javax.swing.JFrame {
         });
 
         btnCari.setText("Cari");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(jLabel1)
-                .addContainerGap(183, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCari)
-                .addGap(19, 19, 19))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCari)
-                    .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 873, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         jPanel3.setLayout(new java.awt.BorderLayout());
 
@@ -238,7 +200,37 @@ public class SPKu extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Alternatif", jPanel4);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel9.setLayout(new java.awt.BorderLayout());
+
+        jPanel10.setPreferredSize(new java.awt.Dimension(873, 50));
+
+        btnNormalisasi.setText("Lakukan Perhitungan Normalisasi");
+        btnNormalisasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNormalisasiActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNormalisasi, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(664, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNormalisasi)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jPanel9.add(jPanel10, java.awt.BorderLayout.PAGE_START);
+
+        hasilPembobotan1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -249,23 +241,38 @@ public class SPKu extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane5.setViewportView(hasilPembobotan1);
 
-        jTabbedPane1.addTab("Normalisasi", jScrollPane4);
+        jPanel9.add(jScrollPane5, java.awt.BorderLayout.CENTER);
+
+        jTabbedPane1.addTab("Normalisasi", jPanel9);
 
         jPanel5.setLayout(new java.awt.BorderLayout());
 
         jPanel8.setPreferredSize(new java.awt.Dimension(873, 50));
 
+        btnNormalisasi1.setText("Lakukan Pembobotan Produk Terbaik");
+        btnNormalisasi1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNormalisasi1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 873, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNormalisasi1)
+                .addContainerGap(654, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNormalisasi1)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel5.add(jPanel8, java.awt.BorderLayout.PAGE_START);
@@ -287,7 +294,53 @@ public class SPKu extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Pembobotan", jPanel5);
 
-        getContentPane().add(jTabbedPane1, java.awt.BorderLayout.LINE_START);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCari)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCari)
+                            .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)))
+                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 878, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -327,6 +380,14 @@ public class SPKu extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        HapusData();
     }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnNormalisasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNormalisasiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNormalisasiActionPerformed
+
+    private void btnNormalisasi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNormalisasi1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNormalisasi1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -372,10 +433,14 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEdit1;
     private javax.swing.JButton btnHapus;
+    private javax.swing.JButton btnNormalisasi;
+    private javax.swing.JButton btnNormalisasi1;
     private javax.swing.JButton btnTambah;
     private javax.swing.JTable hasilPembobotan;
+    private javax.swing.JTable hasilPembobotan1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -383,12 +448,12 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable tblKriteria;
     private javax.swing.JTextField txtCari;
     // End of variables declaration//GEN-END:variables
