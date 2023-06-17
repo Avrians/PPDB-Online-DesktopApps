@@ -64,7 +64,7 @@ public class SPKu extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         btnNormalisasi = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        hasilPembobotan1 = new javax.swing.JTable();
+        hasilNormalisasi = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         btnNormalisasi1 = new javax.swing.JButton();
@@ -230,7 +230,7 @@ public class SPKu extends javax.swing.JFrame {
 
         jPanel9.add(jPanel10, java.awt.BorderLayout.PAGE_START);
 
-        hasilPembobotan1.setModel(new javax.swing.table.DefaultTableModel(
+        hasilNormalisasi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -241,7 +241,7 @@ public class SPKu extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane5.setViewportView(hasilPembobotan1);
+        jScrollPane5.setViewportView(hasilNormalisasi);
 
         jPanel9.add(jScrollPane5, java.awt.BorderLayout.CENTER);
 
@@ -350,10 +350,10 @@ public class SPKu extends javax.swing.JFrame {
     private void txtCariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyReleased
         String key = txtCari.getText();
         String where = " WHERE "
-        + "nama_menu LIKE '%"+key+"%' OR "
-        + "harga_menu LIKE '%"+key+"%' OR "
-        + "stok LIKE '%"+key+"%' OR "
-        + "jenis_menu_id LIKE '%"+key+"%'";
+                + "nama_menu LIKE '%" + key + "%' OR "
+                + "harga_menu LIKE '%" + key + "%' OR "
+                + "stok LIKE '%" + key + "%' OR "
+                + "jenis_menu_id LIKE '%" + key + "%'";
 //        ViewDataMenu(where);
     }//GEN-LAST:event_txtCariKeyReleased
 
@@ -379,11 +379,11 @@ public class SPKu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnNormalisasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNormalisasiActionPerformed
-        // TODO add your handling code here:
+        Normalisasi();
     }//GEN-LAST:event_btnNormalisasiActionPerformed
 
     private void btnNormalisasi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNormalisasi1ActionPerformed
-        // TODO add your handling code here:
+        SPK_SAW();
     }//GEN-LAST:event_btnNormalisasi1ActionPerformed
 
     /**
@@ -433,8 +433,8 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JButton btnNormalisasi;
     private javax.swing.JButton btnNormalisasi1;
     private javax.swing.JButton btnTambah;
+    private javax.swing.JTable hasilNormalisasi;
     private javax.swing.JTable hasilPembobotan;
-    private javax.swing.JTable hasilPembobotan1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -458,7 +458,7 @@ public class SPKu extends javax.swing.JFrame {
     private void loadKriteria() {
         try {
             Object[][] data = null;
-            Object[] header = {"ID", "KRITERIA", "BOBOT", "LABEL"};
+            Object[] header = {"ID", "NAMA KRITERIA", "BOBOT", "LABEL"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             tblKriteria.setModel(model);
 
@@ -483,7 +483,7 @@ public class SPKu extends javax.swing.JFrame {
     private void loadAlternatif() {
         try {
             Object[][] data = null;
-            Object[] header = {"ID", "NAMA", "DESKRIPSI", "HARGA", "KUALITAS", "FITUR", "POPULER", "PURNA JUAL", "KEAWETAN"};
+            Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDO", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             TBLaLTERNATIF.setModel(model);
 
@@ -501,9 +501,8 @@ public class SPKu extends javax.swing.JFrame {
                 String fitur = rs.getString("fitur");
                 String populer = rs.getString("populer");
                 String purnaJual = rs.getString("purna_jual");
-                String keawetan = rs.getString("keawetan");
 
-                Object[] d = {id, nama, des, harga, kualitas, fitur, populer, purnaJual, keawetan};
+                Object[] d = {id, nama, des, harga, kualitas, fitur, populer, purnaJual};
                 model.addRow(d);
             }
         } catch (Exception e) {
@@ -511,15 +510,22 @@ public class SPKu extends javax.swing.JFrame {
         }
     }
 
+    private void Normalisasi() {
+        Object[][] data = null;
+        Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDO", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
+        DefaultTableModel model = new DefaultTableModel(data, header);
+        hasilNormalisasi.setModel(model);
+    }
+
     private void SPK_SAW() {
         try {
             //List<Double> hasil_saw = new ArrayList<>();
-            Object[] header = {"NO","ALTERNATIF","BOBOT"};
+            Object[] header = {"NO", "NAMA SISWA", "SKOR"};
             Object[][] data = null;
             DefaultTableModel model = new DefaultTableModel(data, header);
-            hasilPembobotan.setModel(model); 
+            hasilPembobotan.setModel(model);
             int nomor = 0;
-            
+
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
             String query = "SELECT * FROM alternatif";
@@ -552,15 +558,14 @@ public class SPKu extends javax.swing.JFrame {
 //                System.out.println(bobot("populer"));
 //                System.out.println(bobot("purna_jual"));
 //                System.out.println(bobot("keawetan"));
-                
-                double hasil = (bobot("harga")*norm_harga)+(bobot("kualitas")*norm_kualitas)+(bobot("fitur")*norm_fitur)+(bobot("populer")*norm_populer)+(bobot("purna_jual")*norm_purna_jual)+(bobot("keawetan")*norm_keawetan);
+                double hasil = (bobot("harga") * norm_harga) + (bobot("kualitas") * norm_kualitas) + (bobot("fitur") * norm_fitur) + (bobot("populer") * norm_populer) + (bobot("purna_jual") * norm_purna_jual) + (bobot("keawetan") * norm_keawetan);
                 //hasil_saw.add(hasil);   
                 nomor++;
-                
+
                 String nama_alt = rs.getString("nama");
                 Object[] rowData = {nomor, nama_alt, hasil};
-                model.addRow(rowData); 
-                
+                model.addRow(rowData);
+
             }
             //double max = Collections.max(hasil_saw);
             //System.out.println(max);
