@@ -71,7 +71,8 @@ public class SPKu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         hasilPembobotan = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        btnKembali = new javax.swing.JButton();
+        btnSeleksi = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -327,10 +328,17 @@ public class SPKu extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        btnKembali.setText("Kembali ke Halaman Home");
-        btnKembali.addActionListener(new java.awt.event.ActionListener() {
+        btnSeleksi.setText("Kembali ke Halaman Seleksi");
+        btnSeleksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKembaliActionPerformed(evt);
+                btnSeleksiActionPerformed(evt);
+            }
+        });
+
+        btnHome.setText("Kembali ke Halaman Home");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
             }
         });
 
@@ -339,16 +347,20 @@ public class SPKu extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(711, Short.MAX_VALUE)
-                .addComponent(btnKembali)
+                .addContainerGap(462, Short.MAX_VALUE)
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSeleksi, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(55, Short.MAX_VALUE)
-                .addComponent(btnKembali)
-                .addGap(22, 22, 22))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSeleksi, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
@@ -400,9 +412,17 @@ public class SPKu extends javax.swing.JFrame {
         SPK_SAW();
     }//GEN-LAST:event_btnNormalisasi1ActionPerformed
 
-    private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnKembaliActionPerformed
+    private void btnSeleksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleksiActionPerformed
+        MainClass main = new MainClass();
+        main.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSeleksiActionPerformed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        Index home = new Index();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -448,9 +468,10 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEdit1;
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnKembali;
+    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNormalisasi;
     private javax.swing.JButton btnNormalisasi1;
+    private javax.swing.JButton btnSeleksi;
     private javax.swing.JButton btnTambah;
     private javax.swing.JTable hasilPembobotan;
     private javax.swing.JTable hasilPembobotan1;

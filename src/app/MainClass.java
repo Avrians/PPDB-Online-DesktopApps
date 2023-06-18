@@ -15,7 +15,7 @@ public class MainClass extends javax.swing.JFrame {
 
     public MainClass() {
         initComponents();
-        ViewDataMenu("");
+//        ViewDataMenu("");
 
         setLocationRelativeTo(this);
     }
@@ -112,7 +112,6 @@ public class MainClass extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        // TODO add your handling code here:
         SPKu admin = new SPKu();
         admin.setVisible(true);
         this.setVisible(false);
