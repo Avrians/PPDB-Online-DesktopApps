@@ -26,7 +26,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnAdmin" min="-2" pref="194" max="-2" attributes="0"/>
+              <Component id="btnAdmin" min="-2" pref="131" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnHome" min="-2" pref="132" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="txtCari" min="-2" pref="254" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -51,6 +53,7 @@
                   <Component id="btnAdmin" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="btnCari" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCari" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnHome" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="416" max="-2" attributes="0"/>
@@ -139,6 +142,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="SELEKSI PENERIMAAN PESERTA DIDIK BARU"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnHome">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Halaman Home"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHomeActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

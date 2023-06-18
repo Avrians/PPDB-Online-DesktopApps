@@ -133,7 +133,9 @@ public class Index extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        // TODO add your handling code here:
+        SPKu admin = new SPKu();
+        admin.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed
@@ -141,7 +143,9 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDaftarActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
+        MainClass main = new MainClass();
+        main.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
