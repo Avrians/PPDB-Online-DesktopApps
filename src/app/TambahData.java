@@ -323,13 +323,13 @@ public class TambahData extends javax.swing.JDialog {
             Statement st = c.createStatement();
             String sql = "SELECT * FROM jenis_menu";
             ResultSet rs = st.executeQuery(sql);
-            cmbJenisMenu.removeAllItems();
+//            cmbJenisMenu.removeAllItems(); //eror
             while (rs.next()) {                 
                 String id = rs.getString("id");
                 String nama = rs.getString("nama_jenis_menu");
                 
                 String mJenis = id+"-"+nama;
-                cmbJenisMenu.addItem(mJenis); 
+//                cmbJenisMenu.addItem(mJenis); // eror
             }
         } catch (SQLException e) {
         }
@@ -341,14 +341,14 @@ public class TambahData extends javax.swing.JDialog {
             String nama = txtNamaMenu.getText();
             String harga = txtHarga.getText();
             String stok = txtStok.getText();
-            String jnsMenu = cmbJenisMenu.getSelectedItem().toString();
+//            String jnsMenu = cmbJenisMenu.getSelectedItem().toString(); // eror
             if(nama.isEmpty() || harga.isEmpty() || stok.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Lengkapi Data!"); 
             }else {
                 int new_harga = Integer.parseInt(harga);
                 int new_stok = Integer.parseInt(stok);
-                String[] dw = jnsMenu.split("-");
-                String new_jnsMenu = dw[0];
+//                String[] dw = jnsMenu.split("-");  eror
+//                String new_jnsMenu = dw[0]; // eror
                 //int newJM = Integer.parseInt(new_jnsMenu);
                 //siapkan query
                 String sql = "INSERT INTO menu "
@@ -358,7 +358,7 @@ public class TambahData extends javax.swing.JDialog {
                         + "'"+nama+"',"
                         + "'"+new_harga+"',"
                         + "'"+new_stok+"',"
-                        + "'"+new_jnsMenu+"'"
+//                        + "'"+new_jnsMenu+"'" // eror
                         + ")";
 //                System.out.println(sql);
                 
