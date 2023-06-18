@@ -505,13 +505,13 @@ public class SPKu extends javax.swing.JFrame {
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
             Statement st = koneksi.createStatement();
-            String query = "SELECT * FROM kriteria";
+            String query = "SELECT * FROM kategori";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                int id = rs.getInt("id_kriteria");
+                int id = rs.getInt("id");
                 String nama = rs.getString("nama");
                 String bobot = rs.getString("bobot");
-                String label = rs.getString("label");
+                String label = rs.getString("atribut");
                 Object[] d = {id, nama, bobot, label};
                 model.addRow(d);
             }
@@ -523,24 +523,24 @@ public class SPKu extends javax.swing.JFrame {
     private void loadAlternatif() {
         try {
             Object[][] data = null;
-            Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDO", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
+            Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDONESIA", "NILAI MTK", "NILAI B.INGGRIS", "NILAI IPA", "JARAK"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             TBLaLTERNATIF.setModel(model);
 
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
             Statement st = koneksi.createStatement();
-            String query = "SELECT * FROM alternatif";
+            String query = "SELECT * FROM calon_siswa";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nama = rs.getString("nama");
-                String des = rs.getString("deskripsi");
-                String harga = rs.getString("harga");
-                String kualitas = rs.getString("kualitas");
-                String fitur = rs.getString("fitur");
-                String populer = rs.getString("populer");
-                String purnaJual = rs.getString("purna_jual");
+                String des = rs.getString("nisn");
+                String harga = rs.getString("nilai_indo");
+                String kualitas = rs.getString("nilai_mtk");
+                String fitur = rs.getString("nilai_ing");
+                String populer = rs.getString("nilai_ipa");
+                String purnaJual = rs.getString("jarak");
 
                 Object[] d = {id, nama, des, harga, kualitas, fitur, populer, purnaJual};
                 model.addRow(d);
