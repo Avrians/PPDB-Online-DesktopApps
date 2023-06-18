@@ -55,7 +55,7 @@ public class SPKu extends javax.swing.JFrame {
         tblKriteria = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        btnTambah = new javax.swing.JButton();
+        btnTambahAlt = new javax.swing.JButton();
         btnEdit1 = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -138,10 +138,10 @@ public class SPKu extends javax.swing.JFrame {
 
         jPanel7.setPreferredSize(new java.awt.Dimension(873, 50));
 
-        btnTambah.setText("Tambah");
-        btnTambah.addActionListener(new java.awt.event.ActionListener() {
+        btnTambahAlt.setText("Tambah");
+        btnTambahAlt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTambahActionPerformed(evt);
+                btnTambahAltActionPerformed(evt);
             }
         });
 
@@ -165,7 +165,7 @@ public class SPKu extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTambahAlt, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -177,7 +177,7 @@ public class SPKu extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTambah)
+                    .addComponent(btnTambahAlt)
                     .addComponent(btnEdit1)
                     .addComponent(btnHapus))
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -383,11 +383,10 @@ public class SPKu extends javax.swing.JFrame {
 //        ViewDataMenu(where);
     }//GEN-LAST:event_txtCariKeyReleased
 
-    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        // TODO add your handling code here:
+    private void btnTambahAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahAltActionPerformed
         TambahData TM = new TambahData(this, true);
         TM.setVisible(true);
-    }//GEN-LAST:event_btnTambahActionPerformed
+    }//GEN-LAST:event_btnTambahAltActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
@@ -472,7 +471,7 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JButton btnNormalisasi;
     private javax.swing.JButton btnNormalisasi1;
     private javax.swing.JButton btnSeleksi;
-    private javax.swing.JButton btnTambah;
+    private javax.swing.JButton btnTambahAlt;
     private javax.swing.JTable hasilPembobotan;
     private javax.swing.JTable hasilPembobotan1;
     private javax.swing.JLabel jLabel1;
@@ -523,7 +522,7 @@ public class SPKu extends javax.swing.JFrame {
     private void loadAlternatif() {
         try {
             Object[][] data = null;
-            Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDONESIA", "NILAI MTK", "NILAI B.INGGRIS", "NILAI IPA", "JARAK"};
+            Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDONESIA", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             TBLaLTERNATIF.setModel(model);
 
@@ -568,7 +567,7 @@ public class SPKu extends javax.swing.JFrame {
 
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
-            String query = "SELECT * FROM alternatif";
+            String query = "SELECT * FROM calon_siswa";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 double harga = rs.getDouble("harga");
@@ -618,7 +617,7 @@ public class SPKu extends javax.swing.JFrame {
         try {
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
-            String query = "SELECT MIN(" + kolom + ") AS min_kolom FROM alternatif";
+            String query = "SELECT MIN(" + kolom + ") AS min_kolom FROM calon_siswa";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 min = rs.getDouble("min_kolom");
@@ -635,7 +634,7 @@ public class SPKu extends javax.swing.JFrame {
         try {
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
-            String query = "SELECT MAX(" + kolom + ") AS max_kolom FROM alternatif";
+            String query = "SELECT MAX(" + kolom + ") AS max_kolom FROM calon_siswa";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 max = rs.getDouble("max_kolom");
@@ -652,7 +651,7 @@ public class SPKu extends javax.swing.JFrame {
         try {
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
-            String query = "SELECT label FROM kriteria WHERE nama='" + kolom + "'";
+            String query = "SELECT label FROM kategori WHERE nama='" + kolom + "'";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 label = rs.getString("label");
@@ -669,7 +668,7 @@ public class SPKu extends javax.swing.JFrame {
         try {
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
-            String query = "SELECT bobot FROM kriteria WHERE nama='" + kolom + "'";
+            String query = "SELECT bobot FROM kategori WHERE nama='" + kolom + "'";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 bobot = rs.getDouble("bobot");

@@ -200,7 +200,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnTambah" min="-2" pref="101" max="-2" attributes="0"/>
+                              <Component id="btnTambahAlt" min="-2" pref="101" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnEdit1" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -214,7 +214,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnTambah" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnTambahAlt" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnEdit1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnHapus" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -224,12 +224,12 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="btnTambah">
+                    <Component class="javax.swing.JButton" name="btnTambahAlt">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Tambah"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTambahActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTambahAltActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnEdit1">
