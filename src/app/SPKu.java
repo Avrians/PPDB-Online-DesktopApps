@@ -50,7 +50,7 @@ public class SPKu extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        btnEdit = new javax.swing.JButton();
+        btnEditKri = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKriteria = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -91,10 +91,10 @@ public class SPKu extends javax.swing.JFrame {
 
         jPanel6.setPreferredSize(new java.awt.Dimension(873, 50));
 
-        btnEdit.setText("Edit");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+        btnEditKri.setText("Edit");
+        btnEditKri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
+                btnEditKriActionPerformed(evt);
             }
         });
 
@@ -104,14 +104,14 @@ public class SPKu extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditKri, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(762, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnEdit)
+                .addComponent(btnEditKri)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -388,10 +388,10 @@ public class SPKu extends javax.swing.JFrame {
         TM.setVisible(true);
     }//GEN-LAST:event_btnTambahAltActionPerformed
 
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+    private void btnEditKriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditKriActionPerformed
         // TODO add your handling code here:
 //        EditData();
-    }//GEN-LAST:event_btnEditActionPerformed
+    }//GEN-LAST:event_btnEditKriActionPerformed
 
     private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
         // TODO add your handling code here:
@@ -464,8 +464,8 @@ public class SPKu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TBLaLTERNATIF;
     private javax.swing.JButton btnCari;
-    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEdit1;
+    private javax.swing.JButton btnEditKri;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNormalisasi;
@@ -534,14 +534,14 @@ public class SPKu extends javax.swing.JFrame {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nama = rs.getString("nama");
-                String des = rs.getString("nisn");
-                String harga = rs.getString("nilai_indo");
-                String kualitas = rs.getString("nilai_mtk");
-                String fitur = rs.getString("nilai_ing");
-                String populer = rs.getString("nilai_ipa");
-                String purnaJual = rs.getString("jarak");
+                String nisn = rs.getString("nisn");
+                String nilai_indo = rs.getString("nilai_indo");
+                String nilai_mtk = rs.getString("nilai_mtk");
+                String nilai_ing = rs.getString("nilai_ing");
+                String nilai_ipa = rs.getString("nilai_ipa");
+                String jarak = rs.getString("jarak");
 
-                Object[] d = {id, nama, des, harga, kualitas, fitur, populer, purnaJual};
+                Object[] d = {id, nama, nisn, nilai_indo, nilai_mtk, nilai_ing, nilai_ipa, jarak};
                 model.addRow(d);
             }
         } catch (Exception e) {
@@ -569,35 +569,33 @@ public class SPKu extends javax.swing.JFrame {
             Statement st = c.createStatement();
             String query = "SELECT * FROM calon_siswa";
             ResultSet rs = st.executeQuery(query);
+            
             while (rs.next()) {
-                double harga = rs.getDouble("harga");
-                double kualitas = rs.getDouble("kualitas");
-                double fitur = rs.getDouble("fitur");
-                double populer = rs.getDouble("populer");
-                double purna_jual = rs.getDouble("purna_jual");
-                double keawetan = rs.getDouble("keawetan");
+                double nilai_indo = rs.getDouble("nilai_indo");
+                double nilai_mtk = rs.getDouble("nilai_mtk");
+                double nilai_ing = rs.getDouble("nilai_ing");
+                double nilai_ipa = rs.getDouble("nilai_ipa");
+                double jarak = rs.getDouble("jarak");
 
-                double pembagi_harga = label("harga").equals("cost") ? min("harga") : max("harga");
-                double pembagi_kualitas = label("kualitas").equals("cost") ? min("kualitas") : max("kualitas");
-                double pembagi_fitur = label("fitur").equals("cost") ? min("fitur") : max("fitur");
-                double pembagi_populer = label("populer").equals("cost") ? min("populer") : max("populer");
-                double pembagi_pjual = label("purna_jual").equals("cost") ? min("purna_jual") : max("purna_jual");
-                double pembagi_keawetan = label("keawetan").equals("cost") ? min("keawetan") : max("keawetan");
+                double pembagi_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") : max("nilai_indo");
+                double pembagi_nilai_mtk = label("nilai_mtk").equals("cost") ? min("nilai_mtk") : max("nilai_mtk");
+                double pembagi_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") : max("nilai_ing");
+                double pembagi_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") : max("nilai_ipa");
+                double pembagi_jarak = label("jarak").equals("cost") ? min("jarak") : max("jarak");
 
-                double norm_harga = label("harga").equals("cost") ? min("harga") / harga : harga / max("harga");
-                double norm_kualitas = label("kualitas").equals("cost") ? min("kualitas") / kualitas : kualitas / max("kualitas");
-                double norm_fitur = label("fitur").equals("cost") ? min("fitur") / fitur : fitur / max("fitur");
-                double norm_populer = label("populer").equals("cost") ? min("populer") / populer : populer / max("populer");
-                double norm_purna_jual = label("purna_jual").equals("cost") ? min("purna_jual") / purna_jual : purna_jual / max("purna_jual");
-                double norm_keawetan = label("keawetan").equals("cost") ? min("keawetan") / keawetan : keawetan / max("keawetan");
+                double norm_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") / nilai_indo : nilai_indo / max("nilai_indo");
+                double norm_nilai_mtk = label("nilai_mtk").equals("cost") ? min("nilai_mtk") / nilai_mtk : nilai_mtk / max("nilai_mtk");
+                double norm_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") / nilai_ing : nilai_ing / max("nilai_ing");
+                double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
+                double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
 
-//                System.out.println(bobot("harga"));
-//                System.out.println(bobot("kualitas"));
-//                System.out.println(bobot("fitur"));
-//                System.out.println(bobot("populer"));
-//                System.out.println(bobot("purna_jual"));
-//                System.out.println(bobot("keawetan"));
-                double hasil = (bobot("harga") * norm_harga) + (bobot("kualitas") * norm_kualitas) + (bobot("fitur") * norm_fitur) + (bobot("populer") * norm_populer) + (bobot("purna_jual") * norm_purna_jual) + (bobot("keawetan") * norm_keawetan);
+                System.out.println(bobot("nilai_indo"));
+                System.out.println(bobot("nilai_mtk"));
+                System.out.println(bobot("nilai_ing"));
+                System.out.println(bobot("nilai_ipa"));
+                System.out.println(bobot("jarak"));
+                
+                double hasil = (bobot("nilai_indo") * norm_nilai_indo) + (bobot("nilai_mtk") * norm_nilai_mtk) + (bobot("nilai_ing") * norm_nilai_ing) + (bobot("nilai_ipa") * norm_nilai_ipa) + (bobot("jarak") * norm_jarak);
                 //hasil_saw.add(hasil);   
                 nomor++;
 
@@ -654,7 +652,7 @@ public class SPKu extends javax.swing.JFrame {
             String query = "SELECT label FROM kategori WHERE nama='" + kolom + "'";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                label = rs.getString("label");
+                label = rs.getString("atribut");
             }
             return label;
 
