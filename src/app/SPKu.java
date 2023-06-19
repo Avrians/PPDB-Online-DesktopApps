@@ -549,11 +549,49 @@ public class SPKu extends javax.swing.JFrame {
         }
     }
 
-    private void Normalisasi() {
-        Object[][] data = null;
-        Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDO", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
-        DefaultTableModel model = new DefaultTableModel(data, header);
-        hasilPembobotan1.setModel(model);
+    private void Normalisasi(){
+        try {
+            Object[][] data = null;
+            Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDO", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
+            DefaultTableModel model = new DefaultTableModel(data, header);
+            hasilPembobotan1.setModel(model);
+
+            Connection c = Koneksi.konekKeDB();
+            Statement st = c.createStatement();
+            String query = "SELECT * FROM calon_siswa";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nama = rs.getString("nama");
+                String nisn = rs.getString("nisn");
+
+                double nilai_indo = rs.getDouble("nilai_indo");
+                double nilai_mtk = rs.getDouble("nilai_mtk");
+                double nilai_ing = rs.getDouble("nilai_ing");
+                double nilai_ipa = rs.getDouble("nilai_ipa");
+                double jarak = rs.getDouble("jarak");
+
+                double pembagi_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") : max("nilai_indo");
+                double pembagi_nilai_mtk = label("nilai_mtk").equals("cost") ? min("nilai_mtk") : max("nilai_mtk");
+                double pembagi_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") : max("nilai_ing");
+                double pembagi_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") : max("nilai_ipa");
+                double pembagi_jarak = label("jarak").equals("cost") ? min("jarak") : max("jarak");
+
+                double norm_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") / nilai_indo : nilai_indo / max("nilai_indo");
+                double norm_nilai_mtk = label("nilai_mtk").equals("cost") ? min("nilai_mtk") / nilai_mtk : nilai_mtk / max("nilai_mtk");
+                double norm_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") / nilai_ing : nilai_ing / max("nilai_ing");
+                double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
+                double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
+
+                Object[] rowData = {id, nama,nisn, norm_nilai_indo, norm_nilai_mtk, norm_nilai_ing, norm_nilai_ipa, norm_jarak };
+                model.addRow(rowData);
+
+            }
+            //double max = Collections.max(hasil_saw);
+            //System.out.println(max);
+        } catch (Exception e) {
+        }
     }
 
     private void SPK_SAW() {
@@ -569,7 +607,7 @@ public class SPKu extends javax.swing.JFrame {
             Statement st = c.createStatement();
             String query = "SELECT * FROM calon_siswa";
             ResultSet rs = st.executeQuery(query);
-            
+
             while (rs.next()) {
                 double nilai_indo = rs.getDouble("nilai_indo");
                 double nilai_mtk = rs.getDouble("nilai_mtk");
@@ -589,12 +627,11 @@ public class SPKu extends javax.swing.JFrame {
                 double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
                 double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
 
-                System.out.println(bobot("nilai_indo"));
-                System.out.println(bobot("nilai_mtk"));
-                System.out.println(bobot("nilai_ing"));
-                System.out.println(bobot("nilai_ipa"));
-                System.out.println(bobot("jarak"));
-                
+//                System.out.println(bobot("nilai_indo"));
+//                System.out.println(bobot("nilai_mtk"));
+//                System.out.println(bobot("nilai_ing"));
+//                System.out.println(bobot("nilai_ipa"));
+//                System.out.println(bobot("jarak"));
                 double hasil = (bobot("nilai_indo") * norm_nilai_indo) + (bobot("nilai_mtk") * norm_nilai_mtk) + (bobot("nilai_ing") * norm_nilai_ing) + (bobot("nilai_ipa") * norm_nilai_ipa) + (bobot("jarak") * norm_jarak);
                 //hasil_saw.add(hasil);   
                 nomor++;
