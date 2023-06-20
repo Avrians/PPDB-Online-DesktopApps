@@ -83,7 +83,7 @@ public class EditData extends javax.swing.JDialog {
         jLabel8.setText("JARAK");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel9.setText("MASUKAN DATA PESERTA");
+        jLabel9.setText("UBAH DATA PESERTA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

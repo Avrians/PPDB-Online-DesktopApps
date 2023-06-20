@@ -214,7 +214,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="MASUKAN DATA PESERTA"/>
+        <Property name="text" type="java.lang.String" value="UBAH DATA PESERTA"/>
       </Properties>
     </Component>
   </SubComponents>

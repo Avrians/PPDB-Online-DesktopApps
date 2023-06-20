@@ -389,13 +389,13 @@ public class SPKu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTambahAltActionPerformed
 
     private void btnEditKriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditKriActionPerformed
-        // TODO add your handling code here:
-//        EditData();
+        EditKategori TM = new EditKategori(this, true);
+        TM.setVisible(true);
     }//GEN-LAST:event_btnEditKriActionPerformed
 
     private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
-        // TODO add your handling code here:
-//        EditData();
+        EditData TM = new EditData(this, true);
+        TM.setVisible(true);
     }//GEN-LAST:event_btnEdit1ActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
