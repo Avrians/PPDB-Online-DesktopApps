@@ -284,12 +284,12 @@ public class MainClass extends javax.swing.JFrame {
         }
     }
 
-    private void EditData() {
-        if (mnID > 0) {
-            EditData edit = new EditData(this, true);
-            edit.mn = menu;
-            edit.setVisible(true);
-        }
-    }
+//    private void EditData() {
+//        if (mnID > 0) {
+//            EditData edit = new EditData(this, true);
+//            edit.mn = menu;
+//            edit.setVisible(true);
+//        }
+//    }
 
 }

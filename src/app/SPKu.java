@@ -588,8 +588,6 @@ public class SPKu extends javax.swing.JFrame {
                 model.addRow(rowData);
 
             }
-            //double max = Collections.max(hasil_saw);
-            //System.out.println(max);
         } catch (Exception e) {
         }
     }
