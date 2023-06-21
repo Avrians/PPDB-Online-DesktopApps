@@ -4,6 +4,12 @@
  */
 package app;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Avria
@@ -114,7 +120,20 @@ public class Login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
+//        try {
+//            ResultSet res = conn.ambilData("SELECT * FROM tbl_user WHERE "
+//                    + "username='" + txt_username.getText() + "' and password='" + txt_password.getText() + "'");
+//
+//            if (res.next()) {
+//                SPKu menuUtama = new SPKu();
+//                this.setVisible(false);
+//                menuUtama.setVisible(true);
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Username atau Password Salah!", "Warning", JOptionPane.INFORMATION_MESSAGE);
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_loginBtnActionPerformed
 
 

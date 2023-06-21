@@ -10,8 +10,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class MainClass extends javax.swing.JFrame {
 
-    int mnID;
-    Menu menu;
 
     public MainClass() {
         initComponents();
@@ -40,6 +38,11 @@ public class MainClass extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplikasi Olah Data Menu");
 
+        txtCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCariActionPerformed(evt);
+            }
+        });
         txtCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCariKeyReleased(evt);
@@ -47,6 +50,11 @@ public class MainClass extends javax.swing.JFrame {
         });
 
         btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
+            }
+        });
 
         tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,25 +141,7 @@ public class MainClass extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCariKeyReleased
 
     private void tblDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDataMouseClicked
-        // TODO add your handling code here:
-        int index = tblData.getSelectedRow();
-        if (index != -1) {
-            String id = tblData.getValueAt(index, 0).toString();
-            int TheID = Integer.parseInt(id);
-            mnID = TheID;
 
-            String nama = tblData.getValueAt(index, 1).toString();
-            String harga = tblData.getValueAt(index, 2).toString();
-            String stok = tblData.getValueAt(index, 3).toString();
-            String jenis = tblData.getValueAt(index, 4).toString();
-            menu = new Menu();
-            menu.setId(id);
-            menu.setNama(nama);
-            menu.setHarga(harga);
-            menu.setStok(stok);
-            menu.setJenis(jenis);
-
-        }
     }//GEN-LAST:event_tblDataMouseClicked
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
@@ -164,6 +154,14 @@ public class MainClass extends javax.swing.JFrame {
         TambahData TM = new TambahData(this, true);
         TM.setVisible(true);
     }//GEN-LAST:event_btnAdmin1ActionPerformed
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCariActionPerformed
+
+    private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCariActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,40 +236,5 @@ public class MainClass extends javax.swing.JFrame {
         }
     }
 
-    private void HapusData() {
-        if (mnID > 0) {
-            try {
-                Object[] tombol = {"YA", "Tidak"};
-                int option = JOptionPane.showOptionDialog(this,
-                        "Apakah anda ingin menghapus data?",
-                        "Konfirmasi",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.INFORMATION_MESSAGE, null, tombol, 0);
-                if (option == 0) {
-                    //YA
-                    //YES
-                    Connection c = Koneksi.konekKeDB();
-                    Statement st = c.createStatement();
-                    String sql = "DELETE FROM menu WHERE id_menu='" + mnID + "'";
-                    //eksekusi query
-                    st.executeUpdate(sql);
-                    //refresh view table
-                    ViewDataMenu("");
-                    JOptionPane.showMessageDialog(this, "Data telah dihapus");
-                }
-            } catch (HeadlessException | SQLException e) {
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Anda belum memilih Data");
-        }
-    }
-
-//    private void EditData() {
-//        if (mnID > 0) {
-//            EditData edit = new EditData(this, true);
-//            edit.mn = menu;
-//            edit.setVisible(true);
-//        }
-//    }
-
 }
+

@@ -11,8 +11,6 @@ import javax.swing.JOptionPane;
 
 public class EditKategori extends javax.swing.JDialog {
     
-    Menu mn =  new Menu();
-
     /**
      * Creates new form
      */
@@ -137,41 +135,11 @@ public class EditKategori extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        txtNamaMenu.setText(mn.getNama()); 
-        txtStok.setText(mn.getStok()); 
-        System.out.println("mn "+mn.getHarga());
-        cmbJenisMenu.setSelectedItem(mn.getJenis()); 
-        
-        int list = cmbJenisMenu.getItemCount();
-        for (int i = 0; i < list; i++) {
-            String data = cmbJenisMenu.getItemAt(i);
-            String[] parsing = data.split("-");
-            String id = parsing[0];
-            if(id.equalsIgnoreCase(mn.getJenis())){
-                cmbJenisMenu.setSelectedItem(data); 
-                break;
-            }
-        }
-        
-//        try {
-//            Connection c = Koneksi.sambungkeDB();
-//            Statement st = c.createStatement();
-//            String sql = "SELECT * FROM menu ";
-//            System.out.println(sql);
-//            ResultSet rs = st.executeQuery(sql);
-//            //dan tambahkan data ke dalam tabel
-//            while (rs.next()) {                 
-//                String harga = rs.getString("harga_menu");
-//                txtHarga.setText(harga);
-//            }
-//        } catch (SQLException e) {
-//            System.out.println("eror "+e);
-//        }
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        editData();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -335,40 +303,5 @@ public class EditKategori extends javax.swing.JDialog {
         } catch (SQLException e) {
         }
             
-    }
-
-    private void editData() {
-        try {
-            String nama = txtNamaMenu.getText();
-            String stok = txtStok.getText();
-            String jnsMenu = cmbJenisMenu.getSelectedItem().toString();
-            if(nama.isEmpty() || stok.isEmpty()){
-                JOptionPane.showMessageDialog(this, "Lengkapi Data!"); 
-            }else {
-                int new_stok = Integer.parseInt(stok);
-                String[] dw = jnsMenu.split("-");
-                String new_jnsMenu = dw[0];
-                //int newJM = Integer.parseInt(new_jnsMenu);
-                //siapkan query
-                String sql = "UPDATE menu "
-                        + "SET nama_menu='"+nama+"',"
-                        + "stok='"+new_stok+"',"
-                        + "jenis_menu_id='"+new_jnsMenu+"'"
-                        + "WHERE id_menu ="+mn.getId();
-//                System.out.println(sql);
-                
-                Connection c = Koneksi.konekKeDB();
-                Statement st = c.createStatement();
-                st.executeUpdate(sql);
-                MainClass.ViewDataMenu(""); 
-                JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-                
-            }
-            
-        } catch (HeadlessException | NumberFormatException | SQLException e) {
-            JOptionPane.showMessageDialog(this, "Data GAGAL disimpan\n"
-                    + ""+e.getMessage());
-                
-        }
     }
 }
