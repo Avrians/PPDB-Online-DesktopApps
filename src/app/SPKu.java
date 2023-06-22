@@ -592,7 +592,7 @@ public class SPKu extends javax.swing.JFrame {
         }
     }
 
-    private void SPK_SAW() {
+    public void SPK_SAW() {
         try {
             //List<Double> hasil_saw = new ArrayList<>();
             Object[] header = {"NO", "NAMA SISWA", "SKOR"};
@@ -613,23 +613,12 @@ public class SPKu extends javax.swing.JFrame {
                 double nilai_ipa = rs.getDouble("nilai_ipa");
                 double jarak = rs.getDouble("jarak");
 
-                double pembagi_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") : max("nilai_indo");
-                double pembagi_nilai_mtk = label("nilai_mtk").equals("cost") ? min("nilai_mtk") : max("nilai_mtk");
-                double pembagi_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") : max("nilai_ing");
-                double pembagi_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") : max("nilai_ipa");
-                double pembagi_jarak = label("jarak").equals("cost") ? min("jarak") : max("jarak");
-
                 double norm_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") / nilai_indo : nilai_indo / max("nilai_indo");
                 double norm_nilai_mtk = label("nilai_mtk").equals("cost") ? min("nilai_mtk") / nilai_mtk : nilai_mtk / max("nilai_mtk");
                 double norm_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") / nilai_ing : nilai_ing / max("nilai_ing");
                 double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
                 double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
 
-//                System.out.println(bobot("nilai_indo"));
-//                System.out.println(bobot("nilai_mtk"));
-//                System.out.println(bobot("nilai_ing"));
-//                System.out.println(bobot("nilai_ipa"));
-//                System.out.println(bobot("jarak"));
                 double hasil = (bobot("nilai_indo") * norm_nilai_indo) + (bobot("nilai_mtk") * norm_nilai_mtk) + (bobot("nilai_ing") * norm_nilai_ing) + (bobot("nilai_ipa") * norm_nilai_ipa) + (bobot("jarak") * norm_jarak);
                 //hasil_saw.add(hasil);   
                 nomor++;

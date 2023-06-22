@@ -16,6 +16,7 @@ public class MainClass extends javax.swing.JFrame {
 //        ViewDataMenu("");
 
         setLocationRelativeTo(this);
+        SPK_SAW();
     }
 
     /**
@@ -30,7 +31,7 @@ public class MainClass extends javax.swing.JFrame {
         txtCari = new javax.swing.JTextField();
         btnCari = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblData = new javax.swing.JTable();
+        hasilPembobotan = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
         btnAdmin1 = new javax.swing.JButton();
@@ -56,7 +57,7 @@ public class MainClass extends javax.swing.JFrame {
             }
         });
 
-        tblData.setModel(new javax.swing.table.DefaultTableModel(
+        hasilPembobotan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -67,12 +68,12 @@ public class MainClass extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblData.addMouseListener(new java.awt.event.MouseAdapter() {
+        hasilPembobotan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDataMouseClicked(evt);
+                hasilPembobotanMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblData);
+        jScrollPane1.setViewportView(hasilPembobotan);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("SELEKSI PENERIMAAN PESERTA DIDIK BARU");
@@ -137,12 +138,12 @@ public class MainClass extends javax.swing.JFrame {
                 + "harga_menu LIKE '%" + key + "%' OR "
                 + "stok LIKE '%" + key + "%' OR "
                 + "jenis_menu_id LIKE '%" + key + "%'";
-        ViewDataMenu(where);
+//        ViewDataMenu(where);
     }//GEN-LAST:event_txtCariKeyReleased
 
-    private void tblDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDataMouseClicked
+    private void hasilPembobotanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hasilPembobotanMouseClicked
 
-    }//GEN-LAST:event_tblDataMouseClicked
+    }//GEN-LAST:event_hasilPembobotanMouseClicked
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         Index home = new Index();
@@ -163,6 +164,7 @@ public class MainClass extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCariActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -203,37 +205,120 @@ public class MainClass extends javax.swing.JFrame {
     private javax.swing.JButton btnAdmin1;
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnHome;
+    public static javax.swing.JTable hasilPembobotan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTable tblData;
     private javax.swing.JTextField txtCari;
     // End of variables declaration//GEN-END:variables
 
-    public static void ViewDataMenu(String where) {
-        Object[] kolom = {"ID MENU", "NAMA MENU", "HARGA", "STOK", "JENIS MENU"};
-        DefaultTableModel model = new DefaultTableModel(null, kolom);
-        tblData.setModel(model);
+        public void SPK_SAW() {
+        try {
+            //List<Double> hasil_saw = new ArrayList<>();
+            Object[] header = {"NO", "NAMA SISWA", "SKOR"};
+            Object[][] data = null;
+            DefaultTableModel model = new DefaultTableModel(data, header);
+            hasilPembobotan.setModel(model);
+            int nomor = 0;
 
-        //ambil data dari database
+            Connection c = Koneksi.konekKeDB();
+            Statement st = c.createStatement();
+            String query = "SELECT * FROM calon_siswa";
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                double nilai_indo = rs.getDouble("nilai_indo");
+                double nilai_mtk = rs.getDouble("nilai_mtk");
+                double nilai_ing = rs.getDouble("nilai_ing");
+                double nilai_ipa = rs.getDouble("nilai_ipa");
+                double jarak = rs.getDouble("jarak");
+
+                double norm_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") / nilai_indo : nilai_indo / max("nilai_indo");
+                double norm_nilai_mtk = label("nilai_mtk").equals("cost") ? min("nilai_mtk") / nilai_mtk : nilai_mtk / max("nilai_mtk");
+                double norm_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") / nilai_ing : nilai_ing / max("nilai_ing");
+                double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
+                double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
+
+                double hasil = (bobot("nilai_indo") * norm_nilai_indo) + (bobot("nilai_mtk") * norm_nilai_mtk) + (bobot("nilai_ing") * norm_nilai_ing) + (bobot("nilai_ipa") * norm_nilai_ipa) + (bobot("jarak") * norm_jarak);
+                //hasil_saw.add(hasil);   
+                nomor++;
+
+                String nama_alt = rs.getString("nama");
+                Object[] rowData = {nomor, nama_alt, hasil};
+                model.addRow(rowData);
+
+            }
+            //double max = Collections.max(hasil_saw);
+            //System.out.println(max);
+        } catch (Exception e) {
+        }
+    }
+
+    private double min(String kolom) {
+        double min = 0;
         try {
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
-            String sql = "SELECT * FROM menu " + where;
-            System.out.println(sql);
-            ResultSet rs = st.executeQuery(sql);
-            //dan tambahkan data ke dalam tabel
+            String query = "SELECT MIN(" + kolom + ") AS min_kolom FROM calon_siswa";
+            ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                int id = rs.getInt("id_menu");
-                String nama = rs.getString("nama_menu");
-                int harga = rs.getInt("harga_menu");
-                int stok = rs.getInt("stok");
-                int jenis = rs.getInt("jenis_menu_id");
-                Object[] data = {id, nama, harga, stok, jenis};
-                model.addRow(data);
+                min = rs.getDouble("min_kolom");
             }
+            return min;
+
         } catch (SQLException e) {
-            System.out.println("eror " + e);
         }
+        return min;
+    }
+
+    private double max(String kolom) {
+        double max = 0;
+        try {
+            Connection c = Koneksi.konekKeDB();
+            Statement st = c.createStatement();
+            String query = "SELECT MAX(" + kolom + ") AS max_kolom FROM calon_siswa";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                max = rs.getDouble("max_kolom");
+            }
+            return max;
+
+        } catch (SQLException e) {
+        }
+        return max;
+    }
+
+    private String label(String kolom) {
+        String label = "cost";
+        try {
+            Connection c = Koneksi.konekKeDB();
+            Statement st = c.createStatement();
+            String query = "SELECT label FROM kategori WHERE nama='" + kolom + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                label = rs.getString("atribut");
+            }
+            return label;
+
+        } catch (SQLException e) {
+        }
+        return label;
+    }
+
+    private double bobot(String kolom) {
+        double bobot = 0;
+        try {
+            Connection c = Koneksi.konekKeDB();
+            Statement st = c.createStatement();
+            String query = "SELECT bobot FROM kategori WHERE nama='" + kolom + "'";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                bobot = rs.getDouble("bobot");
+            }
+            return bobot;
+
+        } catch (SQLException e) {
+        }
+        return bobot;
     }
 
 }

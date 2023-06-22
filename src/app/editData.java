@@ -557,7 +557,7 @@ public class EditData extends javax.swing.JDialog {
                 Connection c = Koneksi.konekKeDB();
                 Statement st = c.createStatement();
                 st.executeUpdate(sql);
-                MainClass.ViewDataMenu(""); 
+//                MainClass.ViewDataMenu(""); 
                 JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
                 
             }
