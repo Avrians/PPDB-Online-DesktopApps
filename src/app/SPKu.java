@@ -32,6 +32,7 @@ public class SPKu extends javax.swing.JFrame {
 //        setExtendedState(Frame.MAXIMIZED_BOTH);
         loadKriteria();
         loadAlternatif();
+        Normalisasi();
     }
 
     /**
@@ -62,7 +63,6 @@ public class SPKu extends javax.swing.JFrame {
         TBLaLTERNATIF = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        btnNormalisasi = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         hasilPembobotan1 = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
@@ -206,28 +206,15 @@ public class SPKu extends javax.swing.JFrame {
 
         jPanel10.setPreferredSize(new java.awt.Dimension(873, 50));
 
-        btnNormalisasi.setText("Lakukan Perhitungan Normalisasi");
-        btnNormalisasi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNormalisasiActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnNormalisasi, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(640, Short.MAX_VALUE))
+            .addGap(0, 873, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnNormalisasi)
-                .addContainerGap(16, Short.MAX_VALUE))
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         jPanel9.add(jPanel10, java.awt.BorderLayout.PAGE_START);
@@ -403,10 +390,6 @@ public class SPKu extends javax.swing.JFrame {
 //        HapusData();
     }//GEN-LAST:event_btnHapusActionPerformed
 
-    private void btnNormalisasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNormalisasiActionPerformed
-        Normalisasi();
-    }//GEN-LAST:event_btnNormalisasiActionPerformed
-
     private void btnNormalisasi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNormalisasi1ActionPerformed
         SPK_SAW();
     }//GEN-LAST:event_btnNormalisasi1ActionPerformed
@@ -468,7 +451,6 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JButton btnEditKri;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnNormalisasi;
     private javax.swing.JButton btnNormalisasi1;
     private javax.swing.JButton btnSeleksi;
     private javax.swing.JButton btnTambahAlt;
@@ -592,7 +574,7 @@ public class SPKu extends javax.swing.JFrame {
         }
     }
 
-    public void SPK_SAW() {
+    private void SPK_SAW() {
         try {
             //List<Double> hasil_saw = new ArrayList<>();
             Object[] header = {"NO", "NAMA SISWA", "SKOR"};

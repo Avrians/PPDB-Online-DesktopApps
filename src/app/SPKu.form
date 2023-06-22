@@ -304,33 +304,15 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnNormalisasi" min="-2" pref="223" max="-2" attributes="0"/>
-                              <EmptySpace pref="640" max="32767" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="0" pref="873" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnNormalisasi" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="16" max="32767" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
-                  <SubComponents>
-                    <Component class="javax.swing.JButton" name="btnNormalisasi">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Lakukan Perhitungan Normalisasi"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNormalisasiActionPerformed"/>
-                      </Events>
-                    </Component>
-                  </SubComponents>
                 </Container>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane5">
                   <AuxValues>
