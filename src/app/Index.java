@@ -167,8 +167,8 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SPKu spk = new SPKu();
-        spk.setVisible(true);
+        Login lg = new Login();
+        lg.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnDaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarActionPerformed

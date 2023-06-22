@@ -4,8 +4,10 @@
  */
 package app;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -34,10 +36,10 @@ public class Login extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        userTxt = new javax.swing.JTextField();
+        txt_username = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         loginBtn = new javax.swing.JButton();
-        passTxt = new javax.swing.JPasswordField();
+        txt_password = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -52,7 +54,7 @@ public class Login extends javax.swing.JPanel {
         jLabel2.setText("Username");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        userTxt.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txt_username.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -69,7 +71,7 @@ public class Login extends javax.swing.JPanel {
             }
         });
 
-        passTxt.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txt_password.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,11 +89,11 @@ public class Login extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(10, 10, 10)
-                            .addComponent(userTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(0, 0, 0)
-                            .addComponent(passTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(47, 47, 47))
             .addGroup(layout.createSequentialGroup()
                 .addGap(120, 120, 120)
@@ -108,11 +110,11 @@ public class Login extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(loginBtn)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -120,20 +122,22 @@ public class Login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-//        try {
-//            ResultSet res = conn.ambilData("SELECT * FROM tbl_user WHERE "
-//                    + "username='" + txt_username.getText() + "' and password='" + txt_password.getText() + "'");
-//
-//            if (res.next()) {
-//                SPKu menuUtama = new SPKu();
-//                this.setVisible(false);
-//                menuUtama.setVisible(true);
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Username atau Password Salah!", "Warning", JOptionPane.INFORMATION_MESSAGE);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            Connection koneksi = Koneksi.konekKeDB();
+            Statement st = koneksi.createStatement();
+            String query = "SELECT * FROM user WHERE "
+                    + "username='" + txt_username.getText() + "' and password='" + txt_password.getText() + "'";
+            ResultSet rs = st.executeQuery(query);
+
+            if (rs.next()) {
+                SPKu menuUtama = new SPKu();
+                this.setVisible(false);
+                menuUtama.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Username atau Password Salah!", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException ex) {
+        }
     }//GEN-LAST:event_loginBtnActionPerformed
 
 
@@ -143,7 +147,7 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton loginBtn;
-    private javax.swing.JPasswordField passTxt;
-    private javax.swing.JTextField userTxt;
+    private javax.swing.JPasswordField txt_password;
+    private javax.swing.JTextField txt_username;
     // End of variables declaration//GEN-END:variables
 }
