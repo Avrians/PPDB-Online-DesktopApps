@@ -387,8 +387,7 @@ public class SPKu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEdit1ActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        // TODO add your handling code here:
-//        HapusData();
+        hapusAlt();
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnNormalisasi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNormalisasi1ActionPerformed
@@ -502,7 +501,7 @@ public class SPKu extends javax.swing.JFrame {
         }
     }
 
-    private void loadAlternatif() {
+    public void loadAlternatif() {
         try {
             Object[][] data = null;
             Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDONESIA", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
@@ -532,7 +531,7 @@ public class SPKu extends javax.swing.JFrame {
         }
     }
 
-    private void Normalisasi(){
+    public void Normalisasi() {
         try {
             Object[][] data = null;
             Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDO", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
@@ -567,7 +566,7 @@ public class SPKu extends javax.swing.JFrame {
                 double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
                 double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
 
-                Object[] rowData = {id, nama,nisn, norm_nilai_indo, norm_nilai_mtk, norm_nilai_ing, norm_nilai_ipa, norm_jarak };
+                Object[] rowData = {id, nama, nisn, norm_nilai_indo, norm_nilai_mtk, norm_nilai_ing, norm_nilai_ipa, norm_jarak};
                 model.addRow(rowData);
 
             }
@@ -575,7 +574,7 @@ public class SPKu extends javax.swing.JFrame {
         }
     }
 
-    private void SPK_SAW() {
+    public void SPK_SAW() {
         try {
             //List<Double> hasil_saw = new ArrayList<>();
             Object[] header = {"NO", "NAMA SISWA", "SKOR"};
@@ -684,29 +683,28 @@ public class SPKu extends javax.swing.JFrame {
         }
         return bobot;
     }
-    
-    private double hapusAlt(){
-                    try {
-                Object[] tombol = {"YA", "Tidak"};
-                int option = JOptionPane.showOptionDialog(this, 
-                        "Apakah anda ingin menghapus data?", 
-                        "Konfirmasi", 
-                        JOptionPane.YES_NO_OPTION, 
-                        JOptionPane.INFORMATION_MESSAGE, null, tombol, 0);
-                if(option == 0){
-                    //YA
-                    //YES
-                    Connection c = Koneksi.konekKeDB();
-                    Statement st = c.createStatement();
-                    String sql = "DELETE FROM menu WHERE id_menu='"+"'";
-                    //eksekusi query
-                    st.executeUpdate(sql);
-                    //refresh view table
-//                    ViewDataMenu(""); 
-                    JOptionPane.showMessageDialog(this, "Data telah dihapus");
-                }                
-            } catch (HeadlessException | SQLException e) {
+
+    private double hapusAlt() {
+        try {
+            Object[] tombol = {"YA", "Tidak"};
+            int option = JOptionPane.showOptionDialog(this,
+                    "Apakah anda ingin menghapus data?",
+                    "Konfirmasi",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE, null, tombol, 0);
+            if (option == 0) {
+                //YA
+                //YES
+                Connection c = Koneksi.konekKeDB();
+                Statement st = c.createStatement();
+                String sql = "DELETE FROM menu WHERE id_menu='" + "'";
+                //eksekusi query
+                st.executeUpdate(sql);
+                //refresh view table
+                JOptionPane.showMessageDialog(this, "Data telah dihapus");
             }
+        } catch (HeadlessException | SQLException e) {
+        }
         return 0;
     }
 

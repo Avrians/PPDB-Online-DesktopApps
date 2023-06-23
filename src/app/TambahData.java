@@ -371,7 +371,6 @@ public class TambahData extends javax.swing.JDialog {
                 Connection c = Koneksi.konekKeDB();
                 Statement st = c.createStatement();
                 st.executeUpdate(sql);
-//                MainClass.ViewDataMenu(""); 
                 JOptionPane.showMessageDialog(this, "Data berhasil disimpan, Silahkan cek hasil di  hasil seleksi");
         this.setVisible(false);
 
