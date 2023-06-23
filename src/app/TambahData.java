@@ -344,20 +344,28 @@ public class TambahData extends javax.swing.JDialog {
             String mtk = txtMtk.getText();
             String ipa = txtIpa.getText();
             String jarak = txtJarak.getText();
-            if (nama.isEmpty() || nim.isEmpty() || indo.isEmpty()) {
+            if (nama.isEmpty() || nim.isEmpty() || indo.isEmpty() || ingg.isEmpty() || mtk.isEmpty() || ipa.isEmpty() || jarak.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Lengkapi Data!");
             } else {
-                int new_harga = Integer.parseInt(indo);
-                int new_stok = Integer.parseInt(ingg);
-                
+                int new_indo = Integer.parseInt(indo);
+                int new_ingg = Integer.parseInt(ingg);
+                int new_mtk = Integer.parseInt(mtk);
+                int new_ipa = Integer.parseInt(ipa);
+                float new_jarak;
+                new_jarak = Float.parseFloat(jarak);
+
                 //siapkan query
                 String sql = "INSERT INTO menu "
                         + "(nama_menu,harga_menu,stok,jenis_menu_id) "
                         + "VALUES "
                         + "("
                         + "'" + nama + "',"
-                        + "'" + new_harga + "',"
-                        + "'" + new_stok + "',"
+                        + "'" + nim + "',"
+                        + "'" + new_indo + "',"
+                        + "'" + new_ingg + "',"
+                        + "'" + new_ipa + "',"
+                        + "'" + new_mtk + "',"
+                        + "'" + jarak 
                         + ")";
 
                 Connection c = Koneksi.konekKeDB();

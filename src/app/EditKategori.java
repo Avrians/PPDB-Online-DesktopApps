@@ -32,11 +32,11 @@ public class EditKategori extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtNamaMenu = new javax.swing.JTextField();
-        txtStok = new javax.swing.JTextField();
+        txtNama = new javax.swing.JTextField();
+        txtBobot = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        cmbJenisMenu = new javax.swing.JComboBox<>();
+        cmbJenisAtribut = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -50,9 +50,9 @@ public class EditKategori extends javax.swing.JDialog {
             }
         });
 
-        txtNamaMenu.addActionListener(new java.awt.event.ActionListener() {
+        txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNamaMenuActionPerformed(evt);
+                txtNamaActionPerformed(evt);
             }
         });
 
@@ -60,7 +60,12 @@ public class EditKategori extends javax.swing.JDialog {
 
         jLabel6.setText("ATRIBUT");
 
-        cmbJenisMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbJenisAtribut.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cost", "benefit" }));
+        cmbJenisAtribut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbJenisAtributActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jButton1.setText("Simpan");
@@ -77,7 +82,7 @@ public class EditKategori extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("NAMA MENU");
+        jLabel1.setText("NAMA KRITERIA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,15 +100,15 @@ public class EditKategori extends javax.swing.JDialog {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtNamaMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtStok, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtBobot, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cmbJenisMenu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(cmbJenisAtribut, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -112,14 +117,14 @@ public class EditKategori extends javax.swing.JDialog {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNamaMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtStok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBobot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbJenisMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbJenisAtribut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -147,9 +152,13 @@ public class EditKategori extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txtNamaMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaMenuActionPerformed
+    private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNamaMenuActionPerformed
+    }//GEN-LAST:event_txtNamaActionPerformed
+
+    private void cmbJenisAtributActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbJenisAtributActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbJenisAtributActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,15 +282,15 @@ public class EditKategori extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cmbJenisMenu;
+    private javax.swing.JComboBox<String> cmbJenisAtribut;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField txtNamaMenu;
-    private javax.swing.JTextField txtStok;
+    private javax.swing.JTextField txtBobot;
+    private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 
     
@@ -292,13 +301,13 @@ public class EditKategori extends javax.swing.JDialog {
             Statement st = c.createStatement();
             String sql = "SELECT * FROM jenis_menu";
             ResultSet rs = st.executeQuery(sql);
-            cmbJenisMenu.removeAllItems();
+            cmbJenisAtribut.removeAllItems();
             while (rs.next()) {                 
                 String id = rs.getString("id");
                 String nama = rs.getString("nama_jenis_menu");
                 
                 String mJenis = id+"-"+nama;
-                cmbJenisMenu.addItem(mJenis); 
+                cmbJenisAtribut.addItem(mJenis); 
             }
         } catch (SQLException e) {
         }
