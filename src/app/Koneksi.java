@@ -27,7 +27,7 @@ public class Koneksi {
             Connection koneksi = mds.getConnection();
             return koneksi;
         } catch (SQLException e) {
-            //JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Koneksi Gagal");
         }
         return null;
     }

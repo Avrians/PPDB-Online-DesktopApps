@@ -79,7 +79,7 @@ public class TambahData extends javax.swing.JDialog {
 
         jLabel7.setText("NILAI IPA");
 
-        jLabel8.setText("JARAK");
+        jLabel8.setText("JARAK (Dalam Km)");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("MASUKAN DATA PESERTA");
@@ -373,6 +373,7 @@ public class TambahData extends javax.swing.JDialog {
                 st.executeUpdate(sql);
 //                MainClass.ViewDataMenu(""); 
                 JOptionPane.showMessageDialog(this, "Data berhasil disimpan, Silahkan cek hasil di  hasil seleksi");
+        this.setVisible(false);
 
             }
 
