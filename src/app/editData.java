@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 
 
 public class EditData extends javax.swing.JDialog {
+    
+    Data dt = new Data();
 
     /**
      * Creates new form TambahMahasiswa

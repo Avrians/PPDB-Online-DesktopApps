@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class MainClass extends javax.swing.JFrame {
 
+    int dtID;
+    Data dt;
 
     public MainClass() {
         initComponents();
@@ -164,7 +166,6 @@ public class MainClass extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCariActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -211,7 +212,7 @@ public class MainClass extends javax.swing.JFrame {
     private javax.swing.JTextField txtCari;
     // End of variables declaration//GEN-END:variables
 
-        public void SPK_SAW() {
+    public void SPK_SAW() {
         try {
             //List<Double> hasil_saw = new ArrayList<>();
             Object[] header = {"NO", "NAMA SISWA", "SKOR"};
@@ -322,4 +323,3 @@ public class MainClass extends javax.swing.JFrame {
     }
 
 }
-

@@ -24,6 +24,9 @@ import javax.swing.JOptionPane;
  */
 public class SPKu extends javax.swing.JFrame {
 
+    int dtID;
+    Data dt;
+
     /**
      * Creates new form SPK
      */
@@ -685,27 +688,31 @@ public class SPKu extends javax.swing.JFrame {
     }
 
     private double hapusAlt() {
-        try {
-            Object[] tombol = {"YA", "Tidak"};
-            int option = JOptionPane.showOptionDialog(this,
-                    "Apakah anda ingin menghapus data?",
-                    "Konfirmasi",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE, null, tombol, 0);
-            if (option == 0) {
-                //YA
-                //YES
-                Connection c = Koneksi.konekKeDB();
-                Statement st = c.createStatement();
-                String sql = "DELETE FROM menu WHERE id_menu='" + "'";
-                //eksekusi query
-                st.executeUpdate(sql);
-                //refresh view table
-                JOptionPane.showMessageDialog(this, "Data telah dihapus");
+        if(dtID > 0){
+            try {
+                Object[] tombol = {"YA", "Tidak"};
+                int option = JOptionPane.showOptionDialog(this, 
+                        "Apakah anda ingin menghapus data?", 
+                        "Konfirmasi", 
+                        JOptionPane.YES_NO_OPTION, 
+                        JOptionPane.INFORMATION_MESSAGE, null, tombol, 0);
+                if(option == 0){
+                    //YA
+                    //YES
+                    Connection c = Koneksi.konekKeDB();
+                    Statement st = c.createStatement();
+                    String sql = "DELETE FROM menu WHERE id_menu='"+dtID+"'";
+                    //eksekusi query
+                    st.executeUpdate(sql);
+                    //refresh view table
+                    loadAlternatif();
+                    JOptionPane.showMessageDialog(this, "Data telah dihapus");
+                }                
+            } catch (HeadlessException | SQLException e) {
             }
-        } catch (HeadlessException | SQLException e) {
+        }else {
+            JOptionPane.showMessageDialog(this, "Anda belum memilih Data"); 
         }
-        return 0;
     }
 
 }
