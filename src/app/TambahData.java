@@ -33,7 +33,7 @@ public class TambahData extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtNIm = new javax.swing.JTextField();
+        txtNisn = new javax.swing.JTextField();
         txtIndo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -54,7 +54,7 @@ public class TambahData extends javax.swing.JDialog {
 
         jLabel1.setText("NAMA PESERTA");
 
-        jLabel2.setText("NIM");
+        jLabel2.setText("NISN");
 
         jLabel3.setText("NILAI B.INDONESIA");
 
@@ -115,7 +115,7 @@ public class TambahData extends javax.swing.JDialog {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtNIm, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtNisn, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -146,7 +146,7 @@ public class TambahData extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNIm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNisn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -312,8 +312,8 @@ public class TambahData extends javax.swing.JDialog {
     private javax.swing.JTextField txtIpa;
     private javax.swing.JTextField txtJarak;
     private javax.swing.JTextField txtMtk;
-    private javax.swing.JTextField txtNIm;
     private javax.swing.JTextField txtNama;
+    private javax.swing.JTextField txtNisn;
     // End of variables declaration//GEN-END:variables
 
     private void LoadDataJenis() {
@@ -338,13 +338,13 @@ public class TambahData extends javax.swing.JDialog {
     private void simpanData() {
         try {
             String nama = txtNama.getText();
-            String nim = txtNIm.getText();
+            String nisn = txtNisn.getText();
             String indo = txtIndo.getText();
             String ingg = txtIngg.getText();
             String mtk = txtMtk.getText();
             String ipa = txtIpa.getText();
             String jarak = txtJarak.getText();
-            if (nama.isEmpty() || nim.isEmpty() || indo.isEmpty() || ingg.isEmpty() || mtk.isEmpty() || ipa.isEmpty() || jarak.isEmpty()) {
+            if (nama.isEmpty() || nisn.isEmpty() || indo.isEmpty() || ingg.isEmpty() || mtk.isEmpty() || ipa.isEmpty() || jarak.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Lengkapi Data!");
             } else {
                 int new_indo = Integer.parseInt(indo);
@@ -355,24 +355,24 @@ public class TambahData extends javax.swing.JDialog {
                 new_jarak = Float.parseFloat(jarak);
 
                 //siapkan query
-                String sql = "INSERT INTO menu "
-                        + "(nama_menu,harga_menu,stok,jenis_menu_id) "
-                        + "VALUES "
+                String sql = "INSERT INTO calon_siswa "
+                        + "(nama,nisn,nilai_indo,nilai_mtk, nilai_ing, nilai_ipa,jarak) "
+                        + "VALUES"
                         + "("
                         + "'" + nama + "',"
-                        + "'" + nim + "',"
+                        + "'" + nisn + "',"
                         + "'" + new_indo + "',"
+                        + "'" + new_mtk + "',"
                         + "'" + new_ingg + "',"
                         + "'" + new_ipa + "',"
-                        + "'" + new_mtk + "',"
-                        + "'" + jarak 
+                         + new_jarak 
                         + ")";
 
                 Connection c = Koneksi.konekKeDB();
                 Statement st = c.createStatement();
                 st.executeUpdate(sql);
 //                MainClass.ViewDataMenu(""); 
-                JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+                JOptionPane.showMessageDialog(this, "Data berhasil disimpan, Silahkan cek hasil di  hasil seleksi");
 
             }
 
