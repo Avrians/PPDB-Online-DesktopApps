@@ -9,20 +9,30 @@ package app;
  * @author Avria
  */
 public class Data {
+
     private String id;
+    private String nama;
     private String nisn;
     private String indo;
     private String mtk;
     private String ingg;
     private String ipa;
     private String jarak;
-    
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public String getNisn() {
@@ -72,6 +82,5 @@ public class Data {
     public void setJarak(String jarak) {
         this.jarak = jarak;
     }
-
 
 }

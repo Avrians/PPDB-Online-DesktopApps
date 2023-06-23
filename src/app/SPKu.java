@@ -65,7 +65,7 @@ public class SPKu extends javax.swing.JFrame {
         btnEdit1 = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        TBLaLTERNATIF = new javax.swing.JTable();
+        tblAlternatif = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -190,7 +190,7 @@ public class SPKu extends javax.swing.JFrame {
 
         jPanel4.add(jPanel7, java.awt.BorderLayout.PAGE_START);
 
-        TBLaLTERNATIF.setModel(new javax.swing.table.DefaultTableModel(
+        tblAlternatif.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -201,7 +201,12 @@ public class SPKu extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(TBLaLTERNATIF);
+        tblAlternatif.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAlternatifMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblAlternatif);
 
         jPanel4.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
@@ -409,6 +414,34 @@ public class SPKu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
+    private void tblAlternatifMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAlternatifMouseClicked
+        int index = tblAlternatif.getSelectedRow();
+        if (index != -1) {
+            String id = tblAlternatif.getValueAt(index, 0).toString();
+            int TheID = Integer.parseInt(id);
+            dtID = TheID;
+
+            String nama = tblAlternatif.getValueAt(index, 1).toString();
+            String nisn = tblAlternatif.getValueAt(index, 2).toString();
+            String indo = tblAlternatif.getValueAt(index, 3).toString();
+            String mtk = tblAlternatif.getValueAt(index, 4).toString();
+            String ingg = tblAlternatif.getValueAt(index, 5).toString();
+            String ipa = tblAlternatif.getValueAt(index, 6).toString();
+            String jarak = tblAlternatif.getValueAt(index, 7).toString();
+
+            dt = new Data();
+            dt.setId(id);
+            dt.setNama(nama);
+            dt.setNisn(nisn);
+            dt.setIndo(indo);
+            dt.setMtk(mtk);
+            dt.setIngg(ingg);
+            dt.setIpa(ipa);
+            dt.setJarak(jarak);
+
+        }
+    }//GEN-LAST:event_tblAlternatifMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -448,7 +481,6 @@ public class SPKu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TBLaLTERNATIF;
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnEdit1;
     private javax.swing.JButton btnEditKri;
@@ -475,6 +507,7 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tblAlternatif;
     private javax.swing.JTable tblKriteria;
     private javax.swing.JTextField txtCari;
     // End of variables declaration//GEN-END:variables
@@ -509,7 +542,7 @@ public class SPKu extends javax.swing.JFrame {
             Object[][] data = null;
             Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDONESIA", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
             DefaultTableModel model = new DefaultTableModel(data, header);
-            TBLaLTERNATIF.setModel(model);
+            tblAlternatif.setModel(model);
 
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
@@ -687,31 +720,31 @@ public class SPKu extends javax.swing.JFrame {
         return bobot;
     }
 
-    private double hapusAlt() {
-        if(dtID > 0){
+    private void hapusAlt() {
+        if (dtID > 0) {
             try {
                 Object[] tombol = {"YA", "Tidak"};
-                int option = JOptionPane.showOptionDialog(this, 
-                        "Apakah anda ingin menghapus data?", 
-                        "Konfirmasi", 
-                        JOptionPane.YES_NO_OPTION, 
+                int option = JOptionPane.showOptionDialog(this,
+                        "Apakah anda ingin menghapus data?",
+                        "Konfirmasi",
+                        JOptionPane.YES_NO_OPTION,
                         JOptionPane.INFORMATION_MESSAGE, null, tombol, 0);
-                if(option == 0){
+                if (option == 0) {
                     //YA
                     //YES
                     Connection c = Koneksi.konekKeDB();
                     Statement st = c.createStatement();
-                    String sql = "DELETE FROM menu WHERE id_menu='"+dtID+"'";
+                    String sql = "DELETE FROM calon_siswa WHERE id='" + dtID + "'";
                     //eksekusi query
                     st.executeUpdate(sql);
                     //refresh view table
                     loadAlternatif();
                     JOptionPane.showMessageDialog(this, "Data telah dihapus");
-                }                
+                }
             } catch (HeadlessException | SQLException e) {
             }
-        }else {
-            JOptionPane.showMessageDialog(this, "Anda belum memilih Data"); 
+        } else {
+            JOptionPane.showMessageDialog(this, "Anda belum memilih Data");
         }
     }
 
