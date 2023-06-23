@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
-
 public class TambahData extends javax.swing.JDialog {
 
     /**
@@ -16,10 +15,10 @@ public class TambahData extends javax.swing.JDialog {
     public TambahData(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         LoadDataJenis();
         setLocationRelativeTo(null);
-        
+
     }
 
     /**
@@ -32,10 +31,10 @@ public class TambahData extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtNamaMenu = new javax.swing.JTextField();
+        txtNama = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtHarga = new javax.swing.JTextField();
-        txtStok = new javax.swing.JTextField();
+        txtNIm = new javax.swing.JTextField();
+        txtIndo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
@@ -43,10 +42,10 @@ public class TambahData extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtNamaMenu1 = new javax.swing.JTextField();
-        txtHarga1 = new javax.swing.JTextField();
-        txtStok1 = new javax.swing.JTextField();
-        txtStok2 = new javax.swing.JTextField();
+        txtMtk = new javax.swing.JTextField();
+        txtIngg = new javax.swing.JTextField();
+        txtIpa = new javax.swing.JTextField();
+        txtJarak = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -98,33 +97,33 @@ public class TambahData extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtStok2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtNamaMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtMtk, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtHarga1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtIngg, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtStok1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtIpa, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtNIm, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtStok, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtIndo, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtNamaMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel9)
@@ -143,31 +142,31 @@ public class TambahData extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNamaMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNIm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtStok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIndo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtNamaMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMtk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtHarga1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIngg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtStok1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtStok2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -308,13 +307,13 @@ public class TambahData extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField txtHarga;
-    private javax.swing.JTextField txtHarga1;
-    private javax.swing.JTextField txtNamaMenu;
-    private javax.swing.JTextField txtNamaMenu1;
-    private javax.swing.JTextField txtStok;
-    private javax.swing.JTextField txtStok1;
-    private javax.swing.JTextField txtStok2;
+    private javax.swing.JTextField txtIndo;
+    private javax.swing.JTextField txtIngg;
+    private javax.swing.JTextField txtIpa;
+    private javax.swing.JTextField txtJarak;
+    private javax.swing.JTextField txtMtk;
+    private javax.swing.JTextField txtNIm;
+    private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 
     private void LoadDataJenis() {
@@ -324,56 +323,55 @@ public class TambahData extends javax.swing.JDialog {
             String sql = "SELECT * FROM jenis_menu";
             ResultSet rs = st.executeQuery(sql);
 //            cmbJenisMenu.removeAllItems(); //eror
-            while (rs.next()) {                 
+            while (rs.next()) {
                 String id = rs.getString("id");
                 String nama = rs.getString("nama_jenis_menu");
-                
-                String mJenis = id+"-"+nama;
+
+                String mJenis = id + "-" + nama;
 //                cmbJenisMenu.addItem(mJenis); // eror
             }
         } catch (SQLException e) {
         }
-            
+
     }
 
     private void simpanData() {
         try {
-            String nama = txtNamaMenu.getText();
-            String harga = txtHarga.getText();
-            String stok = txtStok.getText();
-//            String jnsMenu = cmbJenisMenu.getSelectedItem().toString(); // eror
-            if(nama.isEmpty() || harga.isEmpty() || stok.isEmpty()){
-                JOptionPane.showMessageDialog(this, "Lengkapi Data!"); 
-            }else {
-                int new_harga = Integer.parseInt(harga);
-                int new_stok = Integer.parseInt(stok);
-//                String[] dw = jnsMenu.split("-");  eror
-//                String new_jnsMenu = dw[0]; // eror
-                //int newJM = Integer.parseInt(new_jnsMenu);
+            String nama = txtNama.getText();
+            String nim = txtNIm.getText();
+            String indo = txtIndo.getText();
+            String ingg = txtIngg.getText();
+            String mtk = txtMtk.getText();
+            String ipa = txtIpa.getText();
+            String jarak = txtJarak.getText();
+            if (nama.isEmpty() || nim.isEmpty() || indo.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Lengkapi Data!");
+            } else {
+                int new_harga = Integer.parseInt(indo);
+                int new_stok = Integer.parseInt(ingg);
+                
                 //siapkan query
                 String sql = "INSERT INTO menu "
                         + "(nama_menu,harga_menu,stok,jenis_menu_id) "
                         + "VALUES "
                         + "("
-                        + "'"+nama+"',"
-                        + "'"+new_harga+"',"
-                        + "'"+new_stok+"',"
-//                        + "'"+new_jnsMenu+"'" // eror
+                        + "'" + nama + "',"
+                        + "'" + new_harga + "',"
+                        + "'" + new_stok + "',"
                         + ")";
-//                System.out.println(sql);
-                
+
                 Connection c = Koneksi.konekKeDB();
                 Statement st = c.createStatement();
                 st.executeUpdate(sql);
 //                MainClass.ViewDataMenu(""); 
                 JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-                
+
             }
-            
+
         } catch (HeadlessException | NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(this, "Data GAGAL disimpan\n"
-                    + ""+e.getMessage());
-                
+                    + "" + e.getMessage());
+
         }
     }
 }

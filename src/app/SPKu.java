@@ -5,6 +5,7 @@
 package app;
 
 import java.awt.Frame;
+import java.awt.HeadlessException;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -682,6 +684,31 @@ public class SPKu extends javax.swing.JFrame {
         } catch (SQLException e) {
         }
         return bobot;
+    }
+    
+    private double hapusAlt(){
+                    try {
+                Object[] tombol = {"YA", "Tidak"};
+                int option = JOptionPane.showOptionDialog(this, 
+                        "Apakah anda ingin menghapus data?", 
+                        "Konfirmasi", 
+                        JOptionPane.YES_NO_OPTION, 
+                        JOptionPane.INFORMATION_MESSAGE, null, tombol, 0);
+                if(option == 0){
+                    //YA
+                    //YES
+                    Connection c = Koneksi.konekKeDB();
+                    Statement st = c.createStatement();
+                    String sql = "DELETE FROM menu WHERE id_menu='"+"'";
+                    //eksekusi query
+                    st.executeUpdate(sql);
+                    //refresh view table
+//                    ViewDataMenu(""); 
+                    JOptionPane.showMessageDialog(this, "Data telah dihapus");
+                }                
+            } catch (HeadlessException | SQLException e) {
+            }
+        return 0;
     }
 
 }

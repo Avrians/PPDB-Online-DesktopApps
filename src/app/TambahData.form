@@ -33,40 +33,40 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel8" min="-2" pref="117" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtStok2" min="-2" pref="267" max="-2" attributes="0"/>
+                              <Component id="txtJarak" min="-2" pref="267" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel4" min="-2" pref="117" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtNamaMenu1" min="-2" pref="267" max="-2" attributes="0"/>
+                                  <Component id="txtMtk" min="-2" pref="267" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel5" min="-2" pref="117" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtHarga1" min="-2" pref="267" max="-2" attributes="0"/>
+                                  <Component id="txtIngg" min="-2" pref="267" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel7" min="-2" pref="117" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtStok1" min="-2" pref="267" max="-2" attributes="0"/>
+                                  <Component id="txtIpa" min="-2" pref="267" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel2" min="-2" pref="117" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtHarga" min="-2" pref="267" max="-2" attributes="0"/>
+                                  <Component id="txtNIm" min="-2" pref="267" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel3" min="-2" pref="117" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtStok" min="-2" pref="267" max="-2" attributes="0"/>
+                                  <Component id="txtIndo" min="-2" pref="267" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel1" min="-2" pref="117" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtNamaMenu" min="-2" pref="267" max="-2" attributes="0"/>
+                                  <Component id="txtNama" min="-2" pref="267" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -94,37 +94,37 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNamaMenu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNama" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtHarga" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNIm" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtStok" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtIndo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNamaMenu1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtMtk" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtHarga1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtIngg" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtStok1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtIpa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtStok2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtJarak" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="13" max="-2" attributes="0"/>
@@ -144,16 +144,16 @@
         <Property name="text" type="java.lang.String" value="NAMA PESERTA"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNamaMenu">
+    <Component class="javax.swing.JTextField" name="txtNama">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="NIM"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtHarga">
+    <Component class="javax.swing.JTextField" name="txtNIm">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtStok">
+    <Component class="javax.swing.JTextField" name="txtIndo">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -196,13 +196,13 @@
         <Property name="text" type="java.lang.String" value="NILAI IPA"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNamaMenu1">
+    <Component class="javax.swing.JTextField" name="txtMtk">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtHarga1">
+    <Component class="javax.swing.JTextField" name="txtIngg">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtStok1">
+    <Component class="javax.swing.JTextField" name="txtIpa">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtStok2">
+    <Component class="javax.swing.JTextField" name="txtJarak">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
