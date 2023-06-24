@@ -1,6 +1,5 @@
 package app;
 
-
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,19 +7,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
-
 public class EditKategori extends javax.swing.JDialog {
-    
+
+    Kategori ktgr = new Kategori();
+
     /**
      * Creates new form
      */
     public EditKategori(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        LoadDataJenis();
+
         setLocationRelativeTo(null);
-        
+
     }
 
     /**
@@ -155,11 +154,12 @@ public class EditKategori extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+        txtNama.setText(ktgr.getNama());
+        txtBobot.setText(ktgr.getBobot());
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        editData();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -201,85 +201,6 @@ public class EditKategori extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(EditKategori.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -309,8 +230,6 @@ public class EditKategori extends javax.swing.JDialog {
     private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 
-    
-   
     private void LoadDataJenis() {
         try {
             Connection c = Koneksi.konekKeDB();
@@ -318,15 +237,28 @@ public class EditKategori extends javax.swing.JDialog {
             String sql = "SELECT * FROM jenis_menu";
             ResultSet rs = st.executeQuery(sql);
             cmbJenisAtribut.removeAllItems();
-            while (rs.next()) {                 
+            while (rs.next()) {
                 String id = rs.getString("id");
                 String nama = rs.getString("nama_jenis_menu");
-                
-                String mJenis = id+"-"+nama;
-                cmbJenisAtribut.addItem(mJenis); 
+
+                String mJenis = id + "-" + nama;
+                cmbJenisAtribut.addItem(mJenis);
             }
         } catch (SQLException e) {
         }
-            
+
+    }
+
+    private void editData() {
+        try {
+            String nama = txtNama.getText();
+            String bobot = txtBobot.getText();
+            String atribut = cmbJenisAtribut.getName();
+            System.out.println(nama + bobot + atribut);
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Data GAGAL disimpan\n"
+                    + "" + e.getMessage());
+
+        }
     }
 }

@@ -18,7 +18,6 @@ public class EditData extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        LoadDataJenis();
         setLocationRelativeTo(null);
 
     }
@@ -268,25 +267,6 @@ public class EditData extends javax.swing.JDialog {
     private javax.swing.JTextField txtNisn;
     // End of variables declaration//GEN-END:variables
 
-    private void LoadDataJenis() {
-        try {
-            Connection c = Koneksi.konekKeDB();
-            Statement st = c.createStatement();
-            String sql = "SELECT * FROM jenis_menu";
-            ResultSet rs = st.executeQuery(sql);
-//            cmbJenisMenu.removeAllItems(); //eror
-            while (rs.next()) {
-                String id = rs.getString("id");
-                String nama = rs.getString("nama_jenis_menu");
-
-                String mJenis = id + "-" + nama;
-//                cmbJenisMenu.addItem(mJenis); // eror
-            }
-        } catch (SQLException e) {
-        }
-
-    }
-
     private void editData() {
         try {
             String nama = txtNama.getText();
@@ -311,9 +291,9 @@ public class EditData extends javax.swing.JDialog {
                         + "nisn='" + nisn + "',"
                         + "nilai_indo='" + new_indo + "',"
                         + "nilai_mtk='" + new_mtk + "',"
-                        + "nilai_ing='" + new_ingg + "'"
-                        + "nilai_ipa='" + new_ipa + "'"
-                        + "jarak='" + jarak + "'"
+                        + "nilai_ing='" + new_ingg + "',"
+                        + "nilai_ipa='" + new_ipa + "',"
+                        + "jarak=" + jarak
                         + "WHERE id =" + dt.getId();
 //                System.out.println(sql);
 
@@ -321,6 +301,7 @@ public class EditData extends javax.swing.JDialog {
                 Statement st = c.createStatement();
                 st.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+                this.setVisible(false);
 
             }
 

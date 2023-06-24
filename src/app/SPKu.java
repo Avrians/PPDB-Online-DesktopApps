@@ -17,7 +17,9 @@ import javax.swing.JOptionPane;
 public class SPKu extends javax.swing.JFrame {
 
     int dtID;
+    int ktgID;
     Data data;
+    Kategori kategori;
 
     /**
      * Creates new form SPK
@@ -125,6 +127,11 @@ public class SPKu extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblKriteria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblKriteriaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblKriteria);
 
         jPanel3.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -377,8 +384,7 @@ public class SPKu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTambahAltActionPerformed
 
     private void btnEditKriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditKriActionPerformed
-        EditKategori TM = new EditKategori(this, true);
-        TM.setVisible(true);
+        editKtg();
     }//GEN-LAST:event_btnEditKriActionPerformed
 
     private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
@@ -429,9 +435,28 @@ public class SPKu extends javax.swing.JFrame {
             data.setIngg(ingg);
             data.setIpa(ipa);
             data.setJarak(jarak);
-
         }
+
     }//GEN-LAST:event_tblAlternatifMouseClicked
+
+    private void tblKriteriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKriteriaMouseClicked
+        int index2 = tblKriteria.getSelectedRow();
+        if (index2 != -1) {
+            String id = tblKriteria.getValueAt(index2, 0).toString();
+            int theID = Integer.parseInt(id);
+            ktgID = theID;
+
+            String nama = tblKriteria.getValueAt(index2, 1).toString();
+            String bobot = tblKriteria.getValueAt(index2, 2).toString();
+            String atribut = tblKriteria.getValueAt(index2, 3).toString();
+
+            kategori = new Kategori();
+            kategori.setId(id);
+            kategori.setNama(nama);
+            kategori.setBobot(bobot);
+            kategori.setAtribut(atribut);
+        }
+    }//GEN-LAST:event_tblKriteriaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -458,10 +483,6 @@ public class SPKu extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SPKu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -747,4 +768,11 @@ public class SPKu extends javax.swing.JFrame {
         }
     }
 
+    private void editKtg() {
+        if (ktgID > 0) {
+            EditKategori edit = new EditKategori(this, true);
+            edit.ktgr = kategori;
+            edit.setVisible(true);
+        }
+    }
 }

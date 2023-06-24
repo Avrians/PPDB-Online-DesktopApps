@@ -302,14 +302,14 @@ public class TambahData extends javax.swing.JDialog {
                         + "'" + new_mtk + "',"
                         + "'" + new_ingg + "',"
                         + "'" + new_ipa + "',"
-                         + new_jarak 
+                        + new_jarak
                         + ")";
 
                 Connection c = Koneksi.konekKeDB();
                 Statement st = c.createStatement();
                 st.executeUpdate(sql);
                 JOptionPane.showMessageDialog(this, "Data berhasil disimpan, Silahkan cek hasil di  hasil seleksi");
-        this.setVisible(false);
+                this.setVisible(false);
 
             }
 
