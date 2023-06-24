@@ -555,6 +555,7 @@ public class SPKu extends javax.swing.JFrame {
             Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDONESIA", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             tblAlternatif.setModel(model);
+                        int nomor = 0;
 
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
@@ -570,8 +571,9 @@ public class SPKu extends javax.swing.JFrame {
                 String nilai_ing = rs.getString("nilai_ing");
                 String nilai_ipa = rs.getString("nilai_ipa");
                 String jarak = rs.getString("jarak");
+                                nomor++;
 
-                Object[] d = {id, nama, nisn, nilai_indo, nilai_mtk, nilai_ing, nilai_ipa, jarak};
+                Object[] d = {nomor, nama, nisn, nilai_indo, nilai_mtk, nilai_ing, nilai_ipa, jarak};
                 model.addRow(d);
             }
         } catch (Exception e) {
@@ -585,6 +587,7 @@ public class SPKu extends javax.swing.JFrame {
             Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDO", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             hasilPembobotan1.setModel(model);
+            int nomor = 0;
 
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
@@ -613,8 +616,9 @@ public class SPKu extends javax.swing.JFrame {
                 double norm_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") / nilai_ing : nilai_ing / max("nilai_ing");
                 double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
                 double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
+                nomor++;
 
-                Object[] rowData = {id, nama, nisn, norm_nilai_indo, norm_nilai_mtk, norm_nilai_ing, norm_nilai_ipa, norm_jarak};
+                Object[] rowData = {nomor, nama, nisn, norm_nilai_indo, norm_nilai_mtk, norm_nilai_ing, norm_nilai_ipa, norm_jarak};
                 model.addRow(rowData);
 
             }
