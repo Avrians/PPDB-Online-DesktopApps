@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 public class SPKu extends javax.swing.JFrame {
 
     int dtID;
-    Data dt;
+    Data data;
 
     /**
      * Creates new form SPK
@@ -390,8 +390,7 @@ public class SPKu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditKriActionPerformed
 
     private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
-        EditData TM = new EditData(this, true);
-        TM.setVisible(true);
+        editAlt();
     }//GEN-LAST:event_btnEdit1ActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
@@ -429,15 +428,15 @@ public class SPKu extends javax.swing.JFrame {
             String ipa = tblAlternatif.getValueAt(index, 6).toString();
             String jarak = tblAlternatif.getValueAt(index, 7).toString();
 
-            dt = new Data();
-            dt.setId(id);
-            dt.setNama(nama);
-            dt.setNisn(nisn);
-            dt.setIndo(indo);
-            dt.setMtk(mtk);
-            dt.setIngg(ingg);
-            dt.setIpa(ipa);
-            dt.setJarak(jarak);
+            data = new Data();
+            data.setId(id);
+            data.setNama(nama);
+            data.setNisn(nisn);
+            data.setIndo(indo);
+            data.setMtk(mtk);
+            data.setIngg(ingg);
+            data.setIpa(ipa);
+            data.setJarak(jarak);
 
         }
     }//GEN-LAST:event_tblAlternatifMouseClicked
@@ -745,6 +744,14 @@ public class SPKu extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Anda belum memilih Data");
+        }
+    }
+
+    private void editAlt() {
+        if (dtID > 0) {
+            EditData edit = new EditData(this, true);
+            edit.dt = data;
+            edit.setVisible(true);
         }
     }
 
