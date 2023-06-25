@@ -656,8 +656,9 @@ public class SPKu extends javax.swing.JFrame {
             hasilPembobotan.setModel(model);
             int nomor = 0;
 
-            truncate_table("hasil");
-            truncate_table("normalisasi");
+            // masih eror
+//            truncate_table("hasil");
+//            truncate_table("normalisasi");
 
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
@@ -680,21 +681,21 @@ public class SPKu extends javax.swing.JFrame {
                 double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
                 double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
 
-                Connection c2 = Koneksi.konekKeDB();
-                Statement st2 = c2.createStatement();
-                String query2 = "INSERT INTO normalisasi"
-                        + " (nama,nisn,nilai_indo,nilai_mtk, nilai_ing, nilai_ipa,jarak) "
-                        + "VALUES "
-                        + " ("
-                        + "'" + nama + "',"
-                        + "'" + nisn + "',"
-                        + "'" + norm_nilai_indo + "',"
-                        + "'" + norm_nilai_mtk + "',"
-                        + "'" + norm_nilai_ing + "',"
-                        + "'" + norm_nilai_ipa + "',"
-                        + "'" + norm_jarak + "'"
-                        + ")";
-                st2.executeUpdate(query2);
+//                Connection c2 = Koneksi.konekKeDB();
+//                Statement st2 = c2.createStatement();
+//                String query2 = "INSERT INTO normalisasi"
+//                        + " (nama,nisn,nilai_indo,nilai_mtk, nilai_ing, nilai_ipa,jarak) "
+//                        + "VALUES "
+//                        + " ("
+//                        + "'" + nama + "',"
+//                        + "'" + nisn + "',"
+//                        + "'" + norm_nilai_indo + "',"
+//                        + "'" + norm_nilai_mtk + "',"
+//                        + "'" + norm_nilai_ing + "',"
+//                        + "'" + norm_nilai_ipa + "',"
+//                        + "'" + norm_jarak + "'"
+//                        + ")";
+//                st2.executeUpdate(query2);
 
                 double hasil = (bobot("nilai_indo") * norm_nilai_indo) + (bobot("nilai_mtk") * norm_nilai_mtk) + (bobot("nilai_ing") * norm_nilai_ing) + (bobot("nilai_ipa") * norm_nilai_ipa) + (bobot("jarak") * norm_jarak);
                 //hasil_saw.add(hasil);   
@@ -704,12 +705,12 @@ public class SPKu extends javax.swing.JFrame {
                 model.addRow(rowData);
 
                 
-                Connection c3 = Koneksi.konekKeDB();
-                Statement st3 = c3.createStatement();
-                String query3 = "INSERT INTO hasil (nama,nisn,bobot) "
-                        + "VALUES "
-                        + "('" + nama + "','" + nisn+"','"+ hasil+ "')";
-                st3.executeUpdate(query3);
+//                Connection c3 = Koneksi.konekKeDB();
+//                Statement st3 = c3.createStatement();
+//                String query3 = "INSERT INTO hasil (nama,nisn,bobot) "
+//                        + "VALUES "
+//                        + "('" + nama + "','" + nisn+"','"+ hasil+ "')";
+//                st3.executeUpdate(query3);
 
             }
             //double max = Collections.max(hasil_saw);
