@@ -136,10 +136,10 @@ public class MainClass extends javax.swing.JFrame {
     private void txtCariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyReleased
         String key = txtCari.getText();
         String where = " WHERE "
-                + "nama_menu LIKE '%" + key + "%' OR "
-                + "harga_menu LIKE '%" + key + "%' OR "
-                + "stok LIKE '%" + key + "%' OR "
-                + "jenis_menu_id LIKE '%" + key + "%'";
+                + "nama LIKE '%" + key + "%' OR "
+                + "bobot LIKE '%" + key + "%' OR "
+                + "status LIKE '%" + key + "%' OR "
+                + "menu_id LIKE '%" + key + "%'";
 //        ViewDataMenu(where);
     }//GEN-LAST:event_txtCariKeyReleased
 

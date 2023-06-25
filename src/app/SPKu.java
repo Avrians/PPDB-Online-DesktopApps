@@ -29,8 +29,8 @@ public class SPKu extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
 //        setExtendedState(Frame.MAXIMIZED_BOTH);
-        loadKriteria();
-        loadAlternatif();
+        loadKriteria("");
+        loadAlternatif("");
         Normalisasi();
     }
 
@@ -370,12 +370,17 @@ public class SPKu extends javax.swing.JFrame {
 
     private void txtCariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyReleased
         String key = txtCari.getText();
-        String where = " WHERE "
-                + "nama_menu LIKE '%" + key + "%' OR "
-                + "harga_menu LIKE '%" + key + "%' OR "
-                + "stok LIKE '%" + key + "%' OR "
-                + "jenis_menu_id LIKE '%" + key + "%'";
-//        ViewDataMenu(where);
+        String kriteria = " WHERE "
+                + "nama LIKE '%" + key + "%' OR "
+                + "bobot LIKE '%" + key + "%' OR "
+                + "atribut LIKE '%" + key + "%' OR "
+                + "id LIKE '%" + key + "%'";
+        String alternatif = " WHERE "
+                + "nama LIKE '%" + key + "%' OR "
+                + "bobot LIKE '%" + key + "%' OR "
+                + "atribut LIKE '%" + key + "%' OR "
+                + "id LIKE '%" + key + "%'";
+        loadKriteria(kriteria);
     }//GEN-LAST:event_txtCariKeyReleased
 
     private void btnTambahAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahAltActionPerformed
@@ -524,7 +529,7 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JTextField txtCari;
     // End of variables declaration//GEN-END:variables
 
-    private void loadKriteria() {
+    private void loadKriteria(String where) {
         try {
             Object[][] data = null;
             Object[] header = {"ID", "NAMA KRITERIA", "BOBOT", "LABEL"};
@@ -534,7 +539,7 @@ public class SPKu extends javax.swing.JFrame {
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
             Statement st = koneksi.createStatement();
-            String query = "SELECT * FROM kategori";
+            String query = "SELECT * FROM kategori"+where;
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -549,13 +554,14 @@ public class SPKu extends javax.swing.JFrame {
         }
     }
 
-    public void loadAlternatif() {
+
+    public void loadAlternatif(String where) {
         try {
             Object[][] data = null;
             Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDONESIA", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             tblAlternatif.setModel(model);
-                        int nomor = 0;
+            int nomor = 0;
 
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
@@ -571,7 +577,7 @@ public class SPKu extends javax.swing.JFrame {
                 String nilai_ing = rs.getString("nilai_ing");
                 String nilai_ipa = rs.getString("nilai_ipa");
                 String jarak = rs.getString("jarak");
-                                nomor++;
+                nomor++;
 
                 Object[] d = {nomor, nama, nisn, nilai_indo, nilai_mtk, nilai_ing, nilai_ipa, jarak};
                 model.addRow(d);
@@ -754,7 +760,7 @@ public class SPKu extends javax.swing.JFrame {
                     //eksekusi query
                     st.executeUpdate(sql);
                     //refresh view table
-                    loadAlternatif();
+                    loadAlternatif("");
                     JOptionPane.showMessageDialog(this, "Data telah dihapus");
                 }
             } catch (HeadlessException | SQLException e) {
