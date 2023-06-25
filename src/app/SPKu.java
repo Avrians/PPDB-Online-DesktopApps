@@ -377,10 +377,15 @@ public class SPKu extends javax.swing.JFrame {
                 + "id LIKE '%" + key + "%'";
         String alternatif = " WHERE "
                 + "nama LIKE '%" + key + "%' OR "
-                + "bobot LIKE '%" + key + "%' OR "
-                + "atribut LIKE '%" + key + "%' OR "
+                + "nisn LIKE '%" + key + "%' OR "
+                + "nilai_indo LIKE '%" + key + "%' OR "
+                + "nilai_ing LIKE '%" + key + "%' OR "
+                + "nilai_mtk LIKE '%" + key + "%' OR "
+                + "nilai_ipa LIKE '%" + key + "%' OR "
+                + "jarak LIKE '%" + key + "%' OR "
                 + "id LIKE '%" + key + "%'";
         loadKriteria(kriteria);
+        loadAlternatif(alternatif);
     }//GEN-LAST:event_txtCariKeyReleased
 
     private void btnTambahAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahAltActionPerformed
@@ -539,7 +544,7 @@ public class SPKu extends javax.swing.JFrame {
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
             Statement st = koneksi.createStatement();
-            String query = "SELECT * FROM kategori"+where;
+            String query = "SELECT * FROM kategori" + where;
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -554,7 +559,6 @@ public class SPKu extends javax.swing.JFrame {
         }
     }
 
-
     public void loadAlternatif(String where) {
         try {
             Object[][] data = null;
@@ -566,7 +570,7 @@ public class SPKu extends javax.swing.JFrame {
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
             Statement st = koneksi.createStatement();
-            String query = "SELECT * FROM calon_siswa";
+            String query = "SELECT * FROM calon_siswa"+where;
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 int id = rs.getInt("id");
