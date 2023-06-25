@@ -570,7 +570,7 @@ public class SPKu extends javax.swing.JFrame {
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
             Statement st = koneksi.createStatement();
-            String query = "SELECT * FROM calon_siswa"+where;
+            String query = "SELECT * FROM calon_siswa" + where;
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -588,6 +588,17 @@ public class SPKu extends javax.swing.JFrame {
             }
         } catch (Exception e) {
 
+        }
+    }
+
+    private void truncate_table(String tableName) {
+        try {
+            Connection c4 = Koneksi.konekKeDB();
+            Statement st4 = c4.createStatement();
+            String query4 = "TRUNCATE TABLE " + tableName + "";
+            st4.executeUpdate(query4);
+            st4.close();
+        } catch (SQLException e) {
         }
     }
 
