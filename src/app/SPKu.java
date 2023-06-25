@@ -700,9 +700,16 @@ public class SPKu extends javax.swing.JFrame {
                 //hasil_saw.add(hasil);   
                 nomor++;
 
-                String nama_alt = rs.getString("nama");
-                Object[] rowData = {nomor, nama_alt, hasil};
+                Object[] rowData = {nomor, nama, hasil};
                 model.addRow(rowData);
+
+                
+                Connection c3 = Koneksi.konekKeDB();
+                Statement st3 = c3.createStatement();
+                String query3 = "INSERT INTO hasil (nama,nisn,bobot) "
+                        + "VALUES "
+                        + "('" + nama + "','" + nisn+"','"+ hasil+ "')";
+                st3.executeUpdate(query3);
 
             }
             //double max = Collections.max(hasil_saw);
