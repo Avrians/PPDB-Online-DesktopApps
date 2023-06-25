@@ -656,12 +656,18 @@ public class SPKu extends javax.swing.JFrame {
             hasilPembobotan.setModel(model);
             int nomor = 0;
 
+            truncate_table("hasil");
+            truncate_table("normalisasi");
+
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
             String query = "SELECT * FROM calon_siswa";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
+                String id = rs.getString("id");
+                String nama = rs.getString("nama");
+                String nisn = rs.getString("nisn");
                 double nilai_indo = rs.getDouble("nilai_indo");
                 double nilai_mtk = rs.getDouble("nilai_mtk");
                 double nilai_ing = rs.getDouble("nilai_ing");
@@ -673,6 +679,22 @@ public class SPKu extends javax.swing.JFrame {
                 double norm_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") / nilai_ing : nilai_ing / max("nilai_ing");
                 double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
                 double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
+
+                Connection c2 = Koneksi.konekKeDB();
+                Statement st2 = c2.createStatement();
+                String query2 = "INSERT INTO normalisasi"
+                        + " (nama,nisn,nilai_indo,nilai_mtk, nilai_ing, nilai_ipa,jarak) "
+                        + "VALUES "
+                        + " ("
+                        + "'" + nama + "',"
+                        + "'" + nisn + "',"
+                        + "'" + norm_nilai_indo + "',"
+                        + "'" + norm_nilai_mtk + "',"
+                        + "'" + norm_nilai_ing + "',"
+                        + "'" + norm_nilai_ipa + "',"
+                        + "'" + norm_jarak + "'"
+                        + ")";
+                st2.executeUpdate(query2);
 
                 double hasil = (bobot("nilai_indo") * norm_nilai_indo) + (bobot("nilai_mtk") * norm_nilai_mtk) + (bobot("nilai_ing") * norm_nilai_ing) + (bobot("nilai_ipa") * norm_nilai_ipa) + (bobot("jarak") * norm_jarak);
                 //hasil_saw.add(hasil);   
