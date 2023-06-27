@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 
 public class TambahData extends javax.swing.JDialog {
 
+    SPKu spk = new SPKu();
+
     /**
      * Creates new form TambahMahasiswa
      */
@@ -18,8 +20,6 @@ public class TambahData extends javax.swing.JDialog {
 
         LoadDataJenis();
         setLocationRelativeTo(null);
-
-                SPKu spk = new SPKu();
 
     }
 
@@ -310,6 +310,7 @@ public class TambahData extends javax.swing.JDialog {
                 Connection c = Koneksi.konekKeDB();
                 Statement st = c.createStatement();
                 st.executeUpdate(sql);
+                spk.SPK_SAW();
                 JOptionPane.showMessageDialog(this, "Data berhasil disimpan, Silahkan cek hasil di  hasil seleksi");
                 this.setVisible(false);
 

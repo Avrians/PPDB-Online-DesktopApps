@@ -50,6 +50,7 @@ public class SPKu extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        btnRefresh = new javax.swing.JButton();
         btnEditKri = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKriteria = new javax.swing.JTable();
@@ -91,6 +92,13 @@ public class SPKu extends javax.swing.JFrame {
 
         jPanel6.setPreferredSize(new java.awt.Dimension(873, 50));
 
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
         btnEditKri.setText("Edit");
         btnEditKri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,16 +111,26 @@ public class SPKu extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnEditKri, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(779, Short.MAX_VALUE))
+                .addGap(113, 113, 113)
+                .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(676, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addComponent(btnEditKri, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(769, Short.MAX_VALUE)))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnEditKri, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(btnEditKri, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         jPanel3.add(jPanel6, java.awt.BorderLayout.PAGE_START);
@@ -407,9 +425,9 @@ public class SPKu extends javax.swing.JFrame {
         TM.setVisible(true);
     }//GEN-LAST:event_btnTambahAltActionPerformed
 
-    private void btnEditKriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditKriActionPerformed
-        editKtg();
-    }//GEN-LAST:event_btnEditKriActionPerformed
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        loadKriteria("");
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
         editAlt();
@@ -486,6 +504,10 @@ public class SPKu extends javax.swing.JFrame {
         Normalisasi();
     }//GEN-LAST:event_btnNormalisasiActionPerformed
 
+    private void btnEditKriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditKriActionPerformed
+        editKtg();
+    }//GEN-LAST:event_btnEditKriActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -528,6 +550,7 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNormalisasi;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSeleksi;
     private javax.swing.JButton btnTambahAlt;
     private javax.swing.JTable hasilPembobotan;

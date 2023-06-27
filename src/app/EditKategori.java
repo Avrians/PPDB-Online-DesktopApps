@@ -270,7 +270,7 @@ public class EditKategori extends javax.swing.JDialog {
                 String sql = "UPDATE kategori "
                         + "SET bobot='" + new_bobot + "',"
                         + "atribut='" + atribut + "'"
-                        + "WHERE id_menu =" + ktgr.getId();
+                        + "WHERE id =" + ktgr.getId();
 //                System.out.println(sql);
 
                 Connection c = Koneksi.konekKeDB();
