@@ -56,6 +56,12 @@ public class TambahData extends javax.swing.JDialog {
 
         jLabel1.setText("NAMA PESERTA");
 
+        txtNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("NISN");
 
         jLabel3.setText("NILAI B.INDONESIA");
@@ -191,6 +197,10 @@ public class TambahData extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNamaActionPerformed
 
     /**
      * @param args the command line arguments

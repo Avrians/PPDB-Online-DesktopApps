@@ -12,14 +12,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class SPKu extends javax.swing.JFrame {
 
     int dtID;
     int ktgID;
+    int passID;
     Data data;
     Kategori kategori;
+    Passing passing;
 
     /**
      * Creates new form SPK
@@ -32,6 +36,8 @@ public class SPKu extends javax.swing.JFrame {
         loadKriteria("");
         loadAlternatif("");
         Normalisasi();
+
+        txtPassing.setText(loadPassing());
     }
 
     /**
@@ -305,6 +311,11 @@ public class SPKu extends javax.swing.JFrame {
         });
 
         btnPassing.setText("Ubah");
+        btnPassing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPassingActionPerformed(evt);
+            }
+        });
 
         txtPassing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,25 +337,28 @@ public class SPKu extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBobot)
-                .addGap(443, 443, 443)
+                .addGap(404, 404, 404)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPassing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(43, 43, 43))
+                .addGap(82, 82, 82))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)))
-                .addContainerGap())
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(btnBobot, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         jPanel5.add(jPanel8, java.awt.BorderLayout.PAGE_START);
@@ -554,12 +568,16 @@ public class SPKu extends javax.swing.JFrame {
         loadAlternatif("");
     }//GEN-LAST:event_tbnRefreshAltActionPerformed
 
+    private void btnPassingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPassingActionPerformed
+//        loadPassing();
+    }//GEN-LAST:event_btnPassingActionPerformed
+
     private void txtPassingKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassingKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPassingKeyReleased
 
     private void txtPassingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassingActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtPassingActionPerformed
 
     /**
@@ -657,6 +675,23 @@ public class SPKu extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
+    }
+
+    public String loadPassing() {
+        String hasil = "";
+        try {
+            Connection koneksi = Koneksi.konekKeDB();
+            Statement st = koneksi.createStatement();
+            String query = "SELECT * FROM passing where id=1";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                String nilai = rs.getString("nilai");
+                hasil = nilai;
+//                System.out.println(nilai);
+            }
+        } catch (Exception e) {
+        }
+        return hasil;
     }
 
     public void loadAlternatif(String where) {
@@ -768,7 +803,6 @@ public class SPKu extends javax.swing.JFrame {
             hasilPembobotan.setModel(model);
             int nomor = 0;
 
-            // masih eror
             truncate_table("hasil");
 
             Connection c = Koneksi.konekKeDB();
@@ -794,8 +828,8 @@ public class SPKu extends javax.swing.JFrame {
 
                 double hasil = (bobot("nilai_indo") * norm_nilai_indo) + (bobot("nilai_mtk") * norm_nilai_mtk) + (bobot("nilai_ing") * norm_nilai_ing) + (bobot("nilai_ipa") * norm_nilai_ipa) + (bobot("jarak") * norm_jarak);
                 //hasil_saw.add(hasil);
-                                String status = hasil >= 0.8 ? "Diterima" : "Gagal";
-                                
+                String status = hasil >= 0.8 ? "Diterima" : "Gagal";
+
                 nomor++;
 
                 Object[] rowData = {nomor, nama, hasil, status};
@@ -805,7 +839,7 @@ public class SPKu extends javax.swing.JFrame {
                 Statement st3 = c3.createStatement();
                 String query3 = "INSERT INTO hasil (nama,nisn,skor, status) "
                         + "VALUES "
-                        + "('" + nama + "','" + nisn + "','" + hasil + "','" +status+"')";
+                        + "('" + nama + "','" + nisn + "','" + hasil + "','" + status + "')";
                 st3.executeUpdate(query3);
 
             }
