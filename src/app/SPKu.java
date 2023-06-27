@@ -70,6 +70,9 @@ public class SPKu extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         btnBobot = new javax.swing.JButton();
+        btnPassing = new javax.swing.JButton();
+        txtPassing = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         hasilPembobotan = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -301,6 +304,21 @@ public class SPKu extends javax.swing.JFrame {
             }
         });
 
+        btnPassing.setText("Ubah");
+
+        txtPassing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassingActionPerformed(evt);
+            }
+        });
+        txtPassing.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPassingKeyReleased(evt);
+            }
+        });
+
+        jLabel2.setText("Nilai Passing");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -308,13 +326,24 @@ public class SPKu extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBobot)
-                .addContainerGap(654, Short.MAX_VALUE))
+                .addGap(443, 443, 443)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPassing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(43, 43, 43))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnBobot, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
                 .addContainerGap())
         );
 
@@ -525,6 +554,14 @@ public class SPKu extends javax.swing.JFrame {
         loadAlternatif("");
     }//GEN-LAST:event_tbnRefreshAltActionPerformed
 
+    private void txtPassingKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassingKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassingKeyReleased
+
+    private void txtPassingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassingActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -567,12 +604,14 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNormalisasi;
+    private javax.swing.JButton btnPassing;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSeleksi;
     private javax.swing.JButton btnTambahAlt;
     private javax.swing.JTable hasilPembobotan;
     private javax.swing.JTable hasilPembobotan1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -592,6 +631,7 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JTable tblKriteria;
     private javax.swing.JButton tbnRefreshAlt;
     private javax.swing.JTextField txtCari;
+    private javax.swing.JTextField txtPassing;
     // End of variables declaration//GEN-END:variables
 
     public void loadKriteria(String where) {

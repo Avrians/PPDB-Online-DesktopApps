@@ -217,7 +217,7 @@ public class MainClass extends javax.swing.JFrame {
     public void SPK_SAW() {
         try {
             Object[][] data = null;
-            Object[] header = {"NO", "NAMA SISWA", "SKOR", "STATUS"};
+            Object[] header = {"NO", "NAMA SISWA", "NISN","SKOR", "STATUS"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             hasilPembobotan.setModel(model);
             int nomor = 0;
