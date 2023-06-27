@@ -295,7 +295,7 @@ public class EditData extends javax.swing.JDialog {
                         + "nilai_ipa='" + new_ipa + "',"
                         + "jarak=" + jarak
                         + "WHERE id =" + dt.getId();
-//                System.out.println(sql);
+//              System.out.println(sql);
 
                 Connection c = Koneksi.konekKeDB();
                 Statement st = c.createStatement();

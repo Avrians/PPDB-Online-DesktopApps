@@ -19,7 +19,7 @@ public class EditKategori extends javax.swing.JDialog {
         initComponents();
 
         setLocationRelativeTo(null);
-
+        atribute();
     }
 
     /**
@@ -156,6 +156,7 @@ public class EditKategori extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         txtNama.setText(ktgr.getNama());
         txtBobot.setText(ktgr.getBobot());
+        cmbJenisAtribut.setSelectedItem(ktgr.getAtribut());
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -260,5 +261,11 @@ public class EditKategori extends javax.swing.JDialog {
                     + "" + e.getMessage());
 
         }
+    }
+
+    private void atribute() {
+        cmbJenisAtribut.removeAllItems();
+        cmbJenisAtribut.addItem("Cost");
+        cmbJenisAtribut.addItem("Benefit");
     }
 }

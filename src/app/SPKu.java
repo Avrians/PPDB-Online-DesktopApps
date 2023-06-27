@@ -31,7 +31,7 @@ public class SPKu extends javax.swing.JFrame {
 //        setExtendedState(Frame.MAXIMIZED_BOTH);
         loadKriteria("");
         loadAlternatif("");
-        Normalisasi();
+//        Normalisasi();
     }
 
     /**
@@ -62,11 +62,12 @@ public class SPKu extends javax.swing.JFrame {
         tblAlternatif = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
+        btnNormalisasi = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         hasilPembobotan1 = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        btnNormalisasi1 = new javax.swing.JButton();
+        btnBobot = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         hasilPembobotan = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -215,15 +216,28 @@ public class SPKu extends javax.swing.JFrame {
 
         jPanel10.setPreferredSize(new java.awt.Dimension(873, 50));
 
+        btnNormalisasi.setText("Lakukan Pembobotan Produk Terbaik");
+        btnNormalisasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNormalisasiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 873, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNormalisasi)
+                .addContainerGap(654, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNormalisasi, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel9.add(jPanel10, java.awt.BorderLayout.PAGE_START);
@@ -249,10 +263,10 @@ public class SPKu extends javax.swing.JFrame {
 
         jPanel8.setPreferredSize(new java.awt.Dimension(873, 50));
 
-        btnNormalisasi1.setText("Lakukan Pembobotan Produk Terbaik");
-        btnNormalisasi1.addActionListener(new java.awt.event.ActionListener() {
+        btnBobot.setText("Lakukan Pembobotan Produk Terbaik");
+        btnBobot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNormalisasi1ActionPerformed(evt);
+                btnBobotActionPerformed(evt);
             }
         });
 
@@ -262,14 +276,14 @@ public class SPKu extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnNormalisasi1)
+                .addComponent(btnBobot)
                 .addContainerGap(654, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnNormalisasi1, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(btnBobot, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -405,9 +419,9 @@ public class SPKu extends javax.swing.JFrame {
         hapusAlt();
     }//GEN-LAST:event_btnHapusActionPerformed
 
-    private void btnNormalisasi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNormalisasi1ActionPerformed
+    private void btnBobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBobotActionPerformed
         SPK_SAW();
-    }//GEN-LAST:event_btnNormalisasi1ActionPerformed
+    }//GEN-LAST:event_btnBobotActionPerformed
 
     private void btnSeleksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleksiActionPerformed
         MainClass main = new MainClass();
@@ -468,6 +482,10 @@ public class SPKu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblKriteriaMouseClicked
 
+    private void btnNormalisasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNormalisasiActionPerformed
+        Normalisasi();
+    }//GEN-LAST:event_btnNormalisasiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -503,12 +521,13 @@ public class SPKu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBobot;
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnEdit1;
     private javax.swing.JButton btnEditKri;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnHome;
-    private javax.swing.JButton btnNormalisasi1;
+    private javax.swing.JButton btnNormalisasi;
     private javax.swing.JButton btnSeleksi;
     private javax.swing.JButton btnTambahAlt;
     private javax.swing.JTable hasilPembobotan;
@@ -830,4 +849,5 @@ public class SPKu extends javax.swing.JFrame {
             edit.setVisible(true);
         }
     }
+    
 }
