@@ -279,10 +279,10 @@ public class EditData extends javax.swing.JDialog {
             if (nama.isEmpty() || nisn.isEmpty() || indo.isEmpty() || ingg.isEmpty() || mtk.isEmpty() || ipa.isEmpty() || jarak.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Lengkapi Data!");
             } else {
-                int new_indo = Integer.parseInt(indo);
-                int new_ingg = Integer.parseInt(ingg);
-                int new_mtk = Integer.parseInt(mtk);
-                int new_ipa = Integer.parseInt(ipa);
+                float new_indo = Float.parseFloat(indo);
+                float new_ingg = Float.parseFloat(ingg);
+                float new_mtk = Float.parseFloat(mtk);
+                float new_ipa = Float.parseFloat(ipa);
                 float new_jarak;
                 new_jarak = Float.parseFloat(jarak);
                 //siapkan query

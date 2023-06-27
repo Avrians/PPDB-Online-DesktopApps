@@ -216,43 +216,30 @@ public class MainClass extends javax.swing.JFrame {
 
     public void SPK_SAW() {
         try {
-            //List<Double> hasil_saw = new ArrayList<>();
-            Object[] header = {"NO", "NAMA SISWA", "SKOR"};
             Object[][] data = null;
+            Object[] header = {"NO", "NAMA SISWA", "SKOR", "STATUS"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             hasilPembobotan.setModel(model);
             int nomor = 0;
 
-            Connection c = Koneksi.konekKeDB();
-            Statement st = c.createStatement();
-            String query = "SELECT * FROM calon_siswa";
+            //load data from DB
+            Connection koneksi = Koneksi.konekKeDB();
+            Statement st = koneksi.createStatement();
+            String query = "SELECT * FROM hasil Order By skor DESC";
             ResultSet rs = st.executeQuery(query);
-
             while (rs.next()) {
-                double nilai_indo = rs.getDouble("nilai_indo");
-                double nilai_mtk = rs.getDouble("nilai_mtk");
-                double nilai_ing = rs.getDouble("nilai_ing");
-                double nilai_ipa = rs.getDouble("nilai_ipa");
-                double jarak = rs.getDouble("jarak");
-
-                double norm_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") / nilai_indo : nilai_indo / max("nilai_indo");
-                double norm_nilai_mtk = label("nilai_mtk").equals("cost") ? min("nilai_mtk") / nilai_mtk : nilai_mtk / max("nilai_mtk");
-                double norm_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") / nilai_ing : nilai_ing / max("nilai_ing");
-                double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
-                double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
-
-                double hasil = (bobot("nilai_indo") * norm_nilai_indo) + (bobot("nilai_mtk") * norm_nilai_mtk) + (bobot("nilai_ing") * norm_nilai_ing) + (bobot("nilai_ipa") * norm_nilai_ipa) + (bobot("jarak") * norm_jarak);
-                //hasil_saw.add(hasil);   
+                int id = rs.getInt("id");
+                String nama = rs.getString("nama");
+                String nisn = rs.getString("nisn");
+                String skor = rs.getString("skor");
+                String status = rs.getString("status");
                 nomor++;
 
-                String nama_alt = rs.getString("nama");
-                Object[] rowData = {nomor, nama_alt, hasil};
-                model.addRow(rowData);
-
+                Object[] d = {nomor, nama, nisn, skor, status};
+                model.addRow(d);
             }
-            //double max = Collections.max(hasil_saw);
-            //System.out.println(max);
         } catch (Exception e) {
+
         }
     }
 
@@ -322,6 +309,17 @@ public class MainClass extends javax.swing.JFrame {
         } catch (SQLException e) {
         }
         return bobot;
+    }
+
+    private void truncate_table(String tableName) {
+        try {
+            Connection c4 = Koneksi.konekKeDB();
+            Statement st4 = c4.createStatement();
+            String query4 = "TRUNCATE TABLE " + tableName + "";
+            st4.executeUpdate(query4);
+            st4.close();
+        } catch (SQLException e) {
+        }
     }
 
 }

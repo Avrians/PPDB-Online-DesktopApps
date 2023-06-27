@@ -31,7 +31,7 @@ public class SPKu extends javax.swing.JFrame {
 //        setExtendedState(Frame.MAXIMIZED_BOTH);
         loadKriteria("");
         loadAlternatif("");
-//        Normalisasi();
+        Normalisasi();
     }
 
     /**
@@ -59,6 +59,7 @@ public class SPKu extends javax.swing.JFrame {
         btnTambahAlt = new javax.swing.JButton();
         btnEdit1 = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
+        tbnRefreshAlt = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblAlternatif = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
@@ -182,27 +183,39 @@ public class SPKu extends javax.swing.JFrame {
             }
         });
 
+        tbnRefreshAlt.setText("Refresh");
+        tbnRefreshAlt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbnRefreshAltActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(tbnRefreshAlt)
+                .addGap(14, 14, 14)
                 .addComponent(btnTambahAlt, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(550, Short.MAX_VALUE))
+                .addContainerGap(463, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTambahAlt, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                     .addComponent(btnHapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEdit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnEdit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(btnTambahAlt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(tbnRefreshAlt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -234,7 +247,7 @@ public class SPKu extends javax.swing.JFrame {
 
         jPanel10.setPreferredSize(new java.awt.Dimension(873, 50));
 
-        btnNormalisasi.setText("Lakukan Pembobotan Produk Terbaik");
+        btnNormalisasi.setText("Refresh");
         btnNormalisasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNormalisasiActionPerformed(evt);
@@ -248,7 +261,7 @@ public class SPKu extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnNormalisasi)
-                .addContainerGap(654, Short.MAX_VALUE))
+                .addContainerGap(792, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -508,6 +521,10 @@ public class SPKu extends javax.swing.JFrame {
         editKtg();
     }//GEN-LAST:event_btnEditKriActionPerformed
 
+    private void tbnRefreshAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnRefreshAltActionPerformed
+        loadAlternatif("");
+    }//GEN-LAST:event_tbnRefreshAltActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -573,6 +590,7 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblAlternatif;
     private javax.swing.JTable tblKriteria;
+    private javax.swing.JButton tbnRefreshAlt;
     private javax.swing.JTextField txtCari;
     // End of variables declaration//GEN-END:variables
 
@@ -652,6 +670,8 @@ public class SPKu extends javax.swing.JFrame {
             hasilPembobotan1.setModel(model);
             int nomor = 0;
 
+            truncate_table("normalisasi");
+
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
             String query = "SELECT * FROM calon_siswa";
@@ -668,18 +688,28 @@ public class SPKu extends javax.swing.JFrame {
                 double nilai_ipa = rs.getDouble("nilai_ipa");
                 double jarak = rs.getDouble("jarak");
 
-                double pembagi_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") : max("nilai_indo");
-                double pembagi_nilai_mtk = label("nilai_mtk").equals("cost") ? min("nilai_mtk") : max("nilai_mtk");
-                double pembagi_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") : max("nilai_ing");
-                double pembagi_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") : max("nilai_ipa");
-                double pembagi_jarak = label("jarak").equals("cost") ? min("jarak") : max("jarak");
-
-                double norm_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") / nilai_indo : nilai_indo / max("nilai_indo");
-                double norm_nilai_mtk = label("nilai_mtk").equals("cost") ? min("nilai_mtk") / nilai_mtk : nilai_mtk / max("nilai_mtk");
-                double norm_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") / nilai_ing : nilai_ing / max("nilai_ing");
-                double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
+                double norm_nilai_indo = label("nilai_indo").equals("Cost") ? min("nilai_indo") / nilai_indo : nilai_indo / max("nilai_indo");
+                double norm_nilai_mtk = label("nilai_mtk").equals("Cost") ? min("nilai_mtk") / nilai_mtk : nilai_mtk / max("nilai_mtk");
+                double norm_nilai_ing = label("nilai_ing").equals("Cost") ? min("nilai_ing") / nilai_ing : nilai_ing / max("nilai_ing");
+                double norm_nilai_ipa = label("nilai_ipa").equals("Cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
                 double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
                 nomor++;
+
+                Connection c2 = Koneksi.konekKeDB();
+                Statement st2 = c2.createStatement();
+                String query2 = "INSERT INTO normalisasi"
+                        + " (nama,nisn,nilai_indo,nilai_mtk, nilai_ing, nilai_ipa,jarak) "
+                        + "VALUES "
+                        + " ("
+                        + "'" + nama + "',"
+                        + "'" + nisn + "',"
+                        + "'" + norm_nilai_indo + "',"
+                        + "'" + norm_nilai_mtk + "',"
+                        + "'" + norm_nilai_ing + "',"
+                        + "'" + norm_nilai_ipa + "',"
+                        + "'" + norm_jarak + "'"
+                        + ")";
+                st2.executeUpdate(query2);
 
                 Object[] rowData = {nomor, nama, nisn, norm_nilai_indo, norm_nilai_mtk, norm_nilai_ing, norm_nilai_ipa, norm_jarak};
                 model.addRow(rowData);
@@ -692,15 +722,14 @@ public class SPKu extends javax.swing.JFrame {
     public void SPK_SAW() {
         try {
             //List<Double> hasil_saw = new ArrayList<>();
-            Object[] header = {"NO", "NAMA SISWA", "SKOR"};
+            Object[] header = {"NO", "NAMA SISWA", "SKOR", "STATUS"};
             Object[][] data = null;
             DefaultTableModel model = new DefaultTableModel(data, header);
             hasilPembobotan.setModel(model);
             int nomor = 0;
 
             // masih eror
-//            truncate_table("hasil");
-//            truncate_table("normalisasi");
+            truncate_table("hasil");
 
             Connection c = Koneksi.konekKeDB();
             Statement st = c.createStatement();
@@ -717,42 +746,27 @@ public class SPKu extends javax.swing.JFrame {
                 double nilai_ipa = rs.getDouble("nilai_ipa");
                 double jarak = rs.getDouble("jarak");
 
-                double norm_nilai_indo = label("nilai_indo").equals("cost") ? min("nilai_indo") / nilai_indo : nilai_indo / max("nilai_indo");
-                double norm_nilai_mtk = label("nilai_mtk").equals("cost") ? min("nilai_mtk") / nilai_mtk : nilai_mtk / max("nilai_mtk");
-                double norm_nilai_ing = label("nilai_ing").equals("cost") ? min("nilai_ing") / nilai_ing : nilai_ing / max("nilai_ing");
-                double norm_nilai_ipa = label("nilai_ipa").equals("cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
+                double norm_nilai_indo = label("nilai_indo").equals("Cost") ? min("nilai_indo") / nilai_indo : nilai_indo / max("nilai_indo");
+                double norm_nilai_mtk = label("nilai_mtk").equals("Cost") ? min("nilai_mtk") / nilai_mtk : nilai_mtk / max("nilai_mtk");
+                double norm_nilai_ing = label("nilai_ing").equals("Cost") ? min("nilai_ing") / nilai_ing : nilai_ing / max("nilai_ing");
+                double norm_nilai_ipa = label("nilai_ipa").equals("Cost") ? min("nilai_ipa") / nilai_ipa : nilai_ipa / max("nilai_ipa");
                 double norm_jarak = label("jarak").equals("cost") ? min("jarak") / jarak : jarak / max("jarak");
 
-//                Connection c2 = Koneksi.konekKeDB();
-//                Statement st2 = c2.createStatement();
-//                String query2 = "INSERT INTO normalisasi"
-//                        + " (nama,nisn,nilai_indo,nilai_mtk, nilai_ing, nilai_ipa,jarak) "
-//                        + "VALUES "
-//                        + " ("
-//                        + "'" + nama + "',"
-//                        + "'" + nisn + "',"
-//                        + "'" + norm_nilai_indo + "',"
-//                        + "'" + norm_nilai_mtk + "',"
-//                        + "'" + norm_nilai_ing + "',"
-//                        + "'" + norm_nilai_ipa + "',"
-//                        + "'" + norm_jarak + "'"
-//                        + ")";
-//                st2.executeUpdate(query2);
-
                 double hasil = (bobot("nilai_indo") * norm_nilai_indo) + (bobot("nilai_mtk") * norm_nilai_mtk) + (bobot("nilai_ing") * norm_nilai_ing) + (bobot("nilai_ipa") * norm_nilai_ipa) + (bobot("jarak") * norm_jarak);
-                //hasil_saw.add(hasil);   
+                //hasil_saw.add(hasil);
+                                String status = hasil >= 0.8 ? "Diterima" : "Gagal";
+                                
                 nomor++;
 
-                Object[] rowData = {nomor, nama, hasil};
+                Object[] rowData = {nomor, nama, hasil, status};
                 model.addRow(rowData);
 
-                
-//                Connection c3 = Koneksi.konekKeDB();
-//                Statement st3 = c3.createStatement();
-//                String query3 = "INSERT INTO hasil (nama,nisn,bobot) "
-//                        + "VALUES "
-//                        + "('" + nama + "','" + nisn+"','"+ hasil+ "')";
-//                st3.executeUpdate(query3);
+                Connection c3 = Koneksi.konekKeDB();
+                Statement st3 = c3.createStatement();
+                String query3 = "INSERT INTO hasil (nama,nisn,skor, status) "
+                        + "VALUES "
+                        + "('" + nama + "','" + nisn + "','" + hasil + "','" +status+"')";
+                st3.executeUpdate(query3);
 
             }
             //double max = Collections.max(hasil_saw);
@@ -872,5 +886,5 @@ public class SPKu extends javax.swing.JFrame {
             edit.setVisible(true);
         }
     }
-    
+
 }

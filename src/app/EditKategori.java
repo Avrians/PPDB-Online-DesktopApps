@@ -261,7 +261,7 @@ public class EditKategori extends javax.swing.JDialog {
             String nama = txtNama.getText();
             String bobot = txtBobot.getText();
             String atribut = cmbJenisAtribut.getSelectedItem().toString();
-            System.out.println(nama + bobot + atribut);
+//            System.out.println(nama + bobot + atribut);
             if (nama.isEmpty() || bobot.isEmpty() || atribut.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Lengkapi Data!");
             } else {
