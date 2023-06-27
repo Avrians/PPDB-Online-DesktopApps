@@ -553,7 +553,7 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JTextField txtCari;
     // End of variables declaration//GEN-END:variables
 
-    private void loadKriteria(String where) {
+    public void loadKriteria(String where) {
         try {
             Object[][] data = null;
             Object[] header = {"ID", "NAMA KRITERIA", "BOBOT", "LABEL"};

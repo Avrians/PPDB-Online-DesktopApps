@@ -19,6 +19,8 @@ public class TambahData extends javax.swing.JDialog {
         LoadDataJenis();
         setLocationRelativeTo(null);
 
+                SPKu spk = new SPKu();
+
     }
 
     /**

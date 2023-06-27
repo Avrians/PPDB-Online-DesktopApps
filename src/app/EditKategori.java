@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class EditKategori extends javax.swing.JDialog {
@@ -160,7 +162,11 @@ public class EditKategori extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        editData();
+        try {
+            editData();
+        } catch (SQLException ex) {
+            Logger.getLogger(EditKategori.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -250,16 +256,33 @@ public class EditKategori extends javax.swing.JDialog {
 
     }
 
-    private void editData() {
+    private void editData() throws SQLException {
         try {
             String nama = txtNama.getText();
             String bobot = txtBobot.getText();
-            String atribut = cmbJenisAtribut.getName();
+            String atribut = cmbJenisAtribut.getSelectedItem().toString();
             System.out.println(nama + bobot + atribut);
-        } catch (HeadlessException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Data GAGAL disimpan\n"
-                    + "" + e.getMessage());
+            if (nama.isEmpty() || bobot.isEmpty() || atribut.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Lengkapi Data!");
+            } else {
+                Double new_bobot = Double.parseDouble(bobot);
+                //siapkan query
+                String sql = "UPDATE kategori "
+                        + "SET bobot='" + new_bobot + "',"
+                        + "atribut='" + atribut + "'"
+                        + "WHERE id_menu =" + ktgr.getId();
+//                System.out.println(sql);
 
+                Connection c = Koneksi.konekKeDB();
+                Statement st = c.createStatement();
+                st.executeUpdate(sql);
+//                SPKu.ViewDataMenu("");
+                JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+            }
+
+        } catch (HeadlessException | NumberFormatException e) {
+           JOptionPane.showMessageDialog(this, "Data GAGAL disimpan\n"
+                    + "" + e.getMessage());
         }
     }
 

@@ -19,6 +19,8 @@ public class MainClass extends javax.swing.JFrame {
 
         setLocationRelativeTo(this);
         SPK_SAW();
+        SPKu spk = new SPKu();
+        spk.SPK_SAW();
     }
 
     /**
