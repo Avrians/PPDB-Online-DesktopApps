@@ -18,7 +18,7 @@ public class MainClass extends javax.swing.JFrame {
 //        ViewDataMenu("");
 
         setLocationRelativeTo(this);
-        SPK_SAW();
+        loadHasil("");
         SPKu spk = new SPKu();
         spk.SPK_SAW();
         setTitle("Aplikasi Penerimaan Peserta Didik Baru");
@@ -45,6 +45,11 @@ public class MainClass extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplikasi Olah Data Menu");
 
+        txtCari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtCariMouseReleased(evt);
+            }
+        });
         txtCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCariActionPerformed(evt);
@@ -139,12 +144,13 @@ public class MainClass extends javax.swing.JFrame {
 
     private void txtCariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyReleased
         String key = txtCari.getText();
-        String where = " WHERE "
+        String hasil = " WHERE "
                 + "nama LIKE '%" + key + "%' OR "
-                + "bobot LIKE '%" + key + "%' OR "
+                + "nisn LIKE '%" + key + "%' OR "
+                + "skor LIKE '%" + key + "%' OR "
                 + "status LIKE '%" + key + "%' OR "
-                + "menu_id LIKE '%" + key + "%'";
-//        ViewDataMenu(where);
+                + "id LIKE '%" + key + "%'";
+        loadHasil(hasil);
     }//GEN-LAST:event_txtCariKeyReleased
 
     private void hasilPembobotanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hasilPembobotanMouseClicked
@@ -169,6 +175,10 @@ public class MainClass extends javax.swing.JFrame {
     private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCariActionPerformed
+
+    private void txtCariMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCariMouseReleased
+
+    }//GEN-LAST:event_txtCariMouseReleased
 
     /**
      * @param args the command line arguments
@@ -216,7 +226,7 @@ public class MainClass extends javax.swing.JFrame {
     private javax.swing.JTextField txtCari;
     // End of variables declaration//GEN-END:variables
 
-    public void SPK_SAW() {
+    public void loadHasil(String where) {
         try {
             Object[][] data = null;
             Object[] header = {"NO", "NAMA SISWA", "NISN", "SKOR", "STATUS"};
@@ -227,7 +237,7 @@ public class MainClass extends javax.swing.JFrame {
             //load data from DB
             Connection koneksi = Koneksi.konekKeDB();
             Statement st = koneksi.createStatement();
-            String query = "SELECT * FROM hasil Order By skor DESC";
+            String query = "SELECT * FROM hasil" + where+ "Order By skor DESC";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -242,85 +252,6 @@ public class MainClass extends javax.swing.JFrame {
             }
         } catch (Exception e) {
 
-        }
-    }
-
-    private double min(String kolom) {
-        double min = 0;
-        try {
-            Connection c = Koneksi.konekKeDB();
-            Statement st = c.createStatement();
-            String query = "SELECT MIN(" + kolom + ") AS min_kolom FROM calon_siswa";
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                min = rs.getDouble("min_kolom");
-            }
-            return min;
-
-        } catch (SQLException e) {
-        }
-        return min;
-    }
-
-    private double max(String kolom) {
-        double max = 0;
-        try {
-            Connection c = Koneksi.konekKeDB();
-            Statement st = c.createStatement();
-            String query = "SELECT MAX(" + kolom + ") AS max_kolom FROM calon_siswa";
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                max = rs.getDouble("max_kolom");
-            }
-            return max;
-
-        } catch (SQLException e) {
-        }
-        return max;
-    }
-
-    private String label(String kolom) {
-        String label = "cost";
-        try {
-            Connection c = Koneksi.konekKeDB();
-            Statement st = c.createStatement();
-            String query = "SELECT label FROM kategori WHERE nama='" + kolom + "'";
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                label = rs.getString("atribut");
-            }
-            return label;
-
-        } catch (SQLException e) {
-        }
-        return label;
-    }
-
-    private double bobot(String kolom) {
-        double bobot = 0;
-        try {
-            Connection c = Koneksi.konekKeDB();
-            Statement st = c.createStatement();
-            String query = "SELECT bobot FROM kategori WHERE nama='" + kolom + "'";
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                bobot = rs.getDouble("bobot");
-            }
-            return bobot;
-
-        } catch (SQLException e) {
-        }
-        return bobot;
-    }
-
-    private void truncate_table(String tableName) {
-        try {
-            Connection c4 = Koneksi.konekKeDB();
-            Statement st4 = c4.createStatement();
-            String query4 = "TRUNCATE TABLE " + tableName + "";
-            st4.executeUpdate(query4);
-            st4.close();
-        } catch (SQLException e) {
         }
     }
 

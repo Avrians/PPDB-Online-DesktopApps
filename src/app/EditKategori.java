@@ -279,7 +279,7 @@ public class EditKategori extends javax.swing.JDialog {
                 Statement st = c.createStatement();
                 st.executeUpdate(sql);
 //                SPKu.ViewDataMenu("");
-                JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+                JOptionPane.showMessageDialog(this, "Data berhasil disimpan, Selahkan klik Refresh terlebih dahulu");
             }
 
         } catch (HeadlessException | NumberFormatException e) {

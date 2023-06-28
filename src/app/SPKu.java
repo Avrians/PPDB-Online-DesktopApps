@@ -304,7 +304,7 @@ public class SPKu extends javax.swing.JFrame {
 
         jPanel8.setPreferredSize(new java.awt.Dimension(873, 50));
 
-        btnBobot.setText("Lakukan Pembobotan Produk Terbaik");
+        btnBobot.setText("Lakukan Proses Seleksi");
         btnBobot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBobotActionPerformed(evt);
@@ -331,7 +331,7 @@ public class SPKu extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBobot)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 498, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 566, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,11 +341,11 @@ public class SPKu extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addComponent(btnBobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -701,7 +701,7 @@ public class SPKu extends javax.swing.JFrame {
                 String jarak = rs.getString("jarak");
                 nomor++;
 
-                Object[] d = {nomor, nama, nisn, nilai_indo, nilai_mtk, nilai_ing, nilai_ipa, jarak};
+                Object[] d = {id, nama, nisn, nilai_indo, nilai_mtk, nilai_ing, nilai_ipa, jarak};
                 model.addRow(d);
             }
         } catch (Exception e) {
