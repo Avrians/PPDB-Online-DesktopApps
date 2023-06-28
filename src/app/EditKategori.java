@@ -22,6 +22,8 @@ public class EditKategori extends javax.swing.JDialog {
 
         setLocationRelativeTo(null);
         atribute();
+                setTitle("Aplikasi Penerimaan Peserta Didik Baru");
+
     }
 
     /**

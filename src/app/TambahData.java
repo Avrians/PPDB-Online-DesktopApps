@@ -20,6 +20,7 @@ public class TambahData extends javax.swing.JDialog {
 
         LoadDataJenis();
         setLocationRelativeTo(null);
+        setTitle("Aplikasi Penerimaan Peserta Didik Baru");
 
     }
 

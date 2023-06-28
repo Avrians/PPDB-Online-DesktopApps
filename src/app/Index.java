@@ -15,6 +15,7 @@ public class Index extends javax.swing.JFrame {
         initComponents();
 
         setLocationRelativeTo(null);
+        setTitle("Aplikasi Penerimaan Peserta Didik Baru");
 
     }
 

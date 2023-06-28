@@ -38,6 +38,8 @@ public class SPKu extends javax.swing.JFrame {
         Normalisasi();
 
         txtPassing.setText(loadPassing());
+        setTitle("Aplikasi Penerimaan Peserta Didik Baru");
+
     }
 
     /**
@@ -781,7 +783,7 @@ public class SPKu extends javax.swing.JFrame {
             String nilaiPass;
             nilaiPass = txtPassing.getText();
             double nilaiPassing = Double.parseDouble(nilaiPass);
-            
+
             Object[] header = {"NO", "NAMA SISWA", "SKOR", "STATUS"};
             Object[][] data = null;
             DefaultTableModel model = new DefaultTableModel(data, header);
