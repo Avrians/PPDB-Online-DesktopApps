@@ -13,3 +13,6 @@
 
 ![alt text](https://github.com/Avrians/PPDB-Online-DesktopApps/blob/master/hasil/halaman%20admin.png?raw=true)
 <br><br>
+
+
+<small>Note : Database tidak disertakan jika ingin mencoba aplikasi silahkan hubungi sosmed yang ada pada profile github</small>
