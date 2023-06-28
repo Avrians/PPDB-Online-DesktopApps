@@ -19,6 +19,7 @@ public class EditData extends javax.swing.JDialog {
         initComponents();
 
         setLocationRelativeTo(null);
+        setTitle("Aplikasi Penerimaan Peserta Didik Baru");
 
     }
 

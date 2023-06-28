@@ -18,6 +18,8 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setLocationRelativeTo(this);
+        setTitle("Aplikasi Penerimaan Peserta Didik Baru");
+
     }
 
     /**

@@ -22,7 +22,7 @@ public class EditKategori extends javax.swing.JDialog {
 
         setLocationRelativeTo(null);
         atribute();
-                setTitle("Aplikasi Penerimaan Peserta Didik Baru");
+        setTitle("Aplikasi Penerimaan Peserta Didik Baru");
 
     }
 
@@ -283,7 +283,7 @@ public class EditKategori extends javax.swing.JDialog {
             }
 
         } catch (HeadlessException | NumberFormatException e) {
-           JOptionPane.showMessageDialog(this, "Data GAGAL disimpan\n"
+            JOptionPane.showMessageDialog(this, "Data GAGAL disimpan\n"
                     + "" + e.getMessage());
         }
     }
