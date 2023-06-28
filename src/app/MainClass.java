@@ -63,13 +63,13 @@ public class MainClass extends javax.swing.JFrame {
 
         hasilPembobotan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NO", "NAMA SISWA", "NISN", "SKOR", "STATUS"
             }
         ));
         hasilPembobotan.addMouseListener(new java.awt.event.MouseAdapter() {

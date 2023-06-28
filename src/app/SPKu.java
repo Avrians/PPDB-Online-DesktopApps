@@ -152,7 +152,7 @@ public class SPKu extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NO", "NAMA KRITERIA", "BOBOT", "LABEL"
             }
         ));
         tblKriteria.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -231,13 +231,13 @@ public class SPKu extends javax.swing.JFrame {
 
         tblAlternatif.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NO", "NAMA SISWA", "NISN", "NILAI B.INDO", "NILAI MTK", "NILAI B. ING", "NILAI IPA", "JARAK"
             }
         ));
         tblAlternatif.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -283,13 +283,13 @@ public class SPKu extends javax.swing.JFrame {
 
         hasilPembobotan1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NO", "NAMA SISWA", "NISN", "NILAI B.INDO", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"
             }
         ));
         jScrollPane5.setViewportView(hasilPembobotan1);
@@ -358,7 +358,7 @@ public class SPKu extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NO", "NAMA SISWA", "SKOR", "STATUS"
             }
         ));
         jScrollPane3.setViewportView(hasilPembobotan);
@@ -678,7 +678,7 @@ public class SPKu extends javax.swing.JFrame {
     public void loadAlternatif(String where) {
         try {
             Object[][] data = null;
-            Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDONESIA", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
+            Object[] header = {"ID", "NAMA SISWA", "NISN", "NILAI B.INDO", "NILAI MTK", "NILAI B.ING", "NILAI IPA", "JARAK"};
             DefaultTableModel model = new DefaultTableModel(data, header);
             tblAlternatif.setModel(model);
             int nomor = 0;
