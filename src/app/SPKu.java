@@ -76,7 +76,6 @@ public class SPKu extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         btnBobot = new javax.swing.JButton();
-        btnPassing = new javax.swing.JButton();
         txtPassing = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -310,13 +309,6 @@ public class SPKu extends javax.swing.JFrame {
             }
         });
 
-        btnPassing.setText("Ubah");
-        btnPassing.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPassingActionPerformed(evt);
-            }
-        });
-
         txtPassing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPassingActionPerformed(evt);
@@ -337,32 +329,27 @@ public class SPKu extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBobot)
-                .addGap(404, 404, 404)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 498, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPassing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(82, 82, 82))
+                .addGap(32, 32, 32))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(btnBobot, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                        .addContainerGap())))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPassing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
+                .addContainerGap())
         );
 
         jPanel5.add(jPanel8, java.awt.BorderLayout.PAGE_START);
 
+        hasilPembobotan.setAutoCreateRowSorter(true);
         hasilPembobotan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -568,10 +555,6 @@ public class SPKu extends javax.swing.JFrame {
         loadAlternatif("");
     }//GEN-LAST:event_tbnRefreshAltActionPerformed
 
-    private void btnPassingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPassingActionPerformed
-//        loadPassing();
-    }//GEN-LAST:event_btnPassingActionPerformed
-
     private void txtPassingKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassingKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPassingKeyReleased
@@ -622,7 +605,6 @@ public class SPKu extends javax.swing.JFrame {
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNormalisasi;
-    private javax.swing.JButton btnPassing;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSeleksi;
     private javax.swing.JButton btnTambahAlt;
@@ -687,7 +669,6 @@ public class SPKu extends javax.swing.JFrame {
             while (rs.next()) {
                 String nilai = rs.getString("nilai");
                 hasil = nilai;
-//                System.out.println(nilai);
             }
         } catch (Exception e) {
         }
@@ -797,6 +778,10 @@ public class SPKu extends javax.swing.JFrame {
     public void SPK_SAW() {
         try {
             //List<Double> hasil_saw = new ArrayList<>();
+            String nilaiPass;
+            nilaiPass = txtPassing.getText();
+            double nilaiPassing = Double.parseDouble(nilaiPass);
+            
             Object[] header = {"NO", "NAMA SISWA", "SKOR", "STATUS"};
             Object[][] data = null;
             DefaultTableModel model = new DefaultTableModel(data, header);
@@ -828,7 +813,7 @@ public class SPKu extends javax.swing.JFrame {
 
                 double hasil = (bobot("nilai_indo") * norm_nilai_indo) + (bobot("nilai_mtk") * norm_nilai_mtk) + (bobot("nilai_ing") * norm_nilai_ing) + (bobot("nilai_ipa") * norm_nilai_ipa) + (bobot("jarak") * norm_jarak);
                 //hasil_saw.add(hasil);
-                String status = hasil >= 0.8 ? "Diterima" : "Gagal";
+                String status = hasil >= nilaiPassing ? "Diterima" : "Gagal";
 
                 nomor++;
 
